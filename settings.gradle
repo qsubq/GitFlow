@@ -16,3 +16,4 @@ rootProject.name = "JavaCoreTraining"
 include ':app'
 include ':lib'
 include ':Module4'
+include ':module5'
