@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">JavaCoreTraining</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="news">Новости</string>
+    <string name="search">Поиск</string>
+    <string name="to_help">Помочь</string>
+    <string name="history">История</string>
+    <string name="profile">Профиль</string>
+    <string name="denis">Константинов Денис</string>
+    <string name="date_of_birth">Дата рождния</string>
+    <string name="date">01 февраля 1980</string>
+    <string name="field_of_activity">Сфера деятельности</string>
+    <string name="surgery">Хирургия, травмотология</string>
+    <string name="get_push">Получать push-уведомления</string>
+    <string name="your_friends">Ваши друзья</string>
+    <string name="dmitriy">Дмитрий Валерьевич</string>
+    <string name="evgeniy">Евгений Александров</string>
+    <string name="viktor">Виктор Кузнецов</string>
+    <string name="sign_out">Выйти из аккаунта</string>
 </resources>
