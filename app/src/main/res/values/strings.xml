@@ -18,4 +18,8 @@
     <string name="evgeniy">Евгений Александров</string>
     <string name="viktor">Виктор Кузнецов</string>
     <string name="sign_out">Выйти из аккаунта</string>
+    <string name="entry_0">Выбрать фото</string>
+    <string name="entry_1">Сделать снимок</string>
+    <string name="entry_2">Удалить</string>
+    <string name="help">Помочь</string>
 </resources>

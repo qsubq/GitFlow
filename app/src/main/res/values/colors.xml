@@ -8,4 +8,8 @@
     <color name="main_green_color">#66a636</color>
     <color name="red">#fe7460</color>
     <color name="green_divider">#aabbbb</color>
+    <color name="macaroni_and_cheese">#f2b630</color>
+    <color name="light_grey">#e8eded</color>
+    <color name="cool_grey">#aabbbb</color>
+    <color name="black_54">#8a000000</color>
 </resources>
