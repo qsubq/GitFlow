@@ -22,4 +22,10 @@
     <string name="entry_1">Сделать снимок</string>
     <string name="entry_2">Удалить</string>
     <string name="help">Помочь</string>
+    <string name="filter">Фильтр</string>
+    <string name="helps_category">Категории помощи</string>
+    <string name="volunteering">Волонтерством</string>
+    <string name="prof_help">Проф. помощью</string>
+    <string name="stuff">Вещами</string>
+    <string name="with_money">Деньгами</string>
 </resources>
