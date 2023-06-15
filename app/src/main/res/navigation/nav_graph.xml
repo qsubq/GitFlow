@@ -7,12 +7,15 @@
 
     <fragment
         android:id="@+id/containerFragment"
-        android:name="com.example.javacoretraining.module6.screen.ContainerFragment"
+        android:name="com.example.javacoretraining.module6.screen.container.ContainerFragment"
         android:label="fragment_container"
         tools:layout="@layout/fragment_container" >
         <action
             android:id="@+id/action_containerFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_containerFragment_to_detailNewsFragment"
+            app:destination="@id/detailNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_filter" >
         <action
             android:id="@+id/action_filterFragment_to_containerFragment"
+            app:destination="@id/containerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailNewsFragment"
+        android:name="com.example.javacoretraining.module6.screen.DetailNewsFragment"
+        android:label="fragment_detail_news"
+        tools:layout="@layout/fragment_detail_news" >
+        <action
+            android:id="@+id/action_detailNewsFragment_to_containerFragment"
             app:destination="@id/containerFragment" />
     </fragment>
 </navigation>

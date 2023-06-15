@@ -1,0 +1,21 @@
+{
+"category":
+[
+    {
+        "id": 0,
+        "name":"money help"
+    },
+    {
+        "id": 1,
+        "name":"stuff help"
+    },
+    {
+        "id": 2,
+        "name":"prof. help"
+    },
+    {
+        "id": 3,
+        "name":"voluntee help"
+    }
+]
+}

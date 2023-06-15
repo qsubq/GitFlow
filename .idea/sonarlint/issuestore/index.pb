@@ -3,14 +3,10 @@
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 €
 Papp/src/main/java/com/example/javacoretraining/module6/screen/HistoryFragment.kt,e\3\e385783fbf299360b9f2ad4a35be7c0476b67f81
-}
-Mapp/src/main/java/com/example/javacoretraining/module6/screen/NewsFragment.kt,e\5\e510c086e585a88d81146f6b1c35d00d6628f373
 ‘
 aapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchRecyclerViewAdapter.kt,b\1\b1f2e076da871ea3bb00fe0fe433fecaebf1daeb
 ‹
 [app/src/main/java/com/example/javacoretraining/module6/screen/search/SearchInNKOFragment.kt,e\9\e977bf5b527481995558bf4dc0e11555ec71f2c9
-‚
-Rapp/src/main/java/com/example/javacoretraining/module6/screen/ContainerFragment.kt,a\6\a636b0507ae6162a0dd1635a393f2467f0b3b2ff
 ‘
 aapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpGridRecyclerViewAdapter.kt,1\3\13dadfe262da69e448e67d19fe9e7b8f590464aa
 Š

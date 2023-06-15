@@ -1,16 +1,28 @@
 package com.example.javacoretraining.module6.screen.news
 
-import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.NewsRecyclerViewItemLayoutBinding
 
-class NewsRecyclerViewAdapter : RecyclerView.Adapter<NewsRecyclerViewAdapter.NewsViewHolder>() {
+class NewsRecyclerViewAdapter() :
+    ListAdapter<NewsItem, NewsRecyclerViewAdapter.NewsViewHolder>(DiffCallback()) {
+
+    private class DiffCallback : DiffUtil.ItemCallback<NewsItem>() {
+        override fun areItemsTheSame(oldItem: NewsItem, newItem: NewsItem) =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: NewsItem, newItem: NewsItem) =
+            oldItem == newItem
+    }
+
     class NewsViewHolder(val binding: NewsRecyclerViewItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
-
-    private var listOfNewsItems: List<NewsItem> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = NewsRecyclerViewItemLayoutBinding.inflate(
@@ -22,19 +34,20 @@ class NewsRecyclerViewAdapter : RecyclerView.Adapter<NewsRecyclerViewAdapter.New
     }
 
     override fun getItemCount(): Int {
-        return listOfNewsItems.size
+        return currentList.size
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.binding.imgNews.setImageResource(listOfNewsItems[position].imgId)
-        holder.binding.tvDate?.text = listOfNewsItems[position].date
-        holder.binding.tvTitle?.text = listOfNewsItems[position].title
-        holder.binding.tvDesc?.text = listOfNewsItems[position].description
-    }
+        holder.binding.imgNews.setImageResource(currentList[position].imgId)
+        holder.binding.tvDate?.text = currentList[position].date
+        holder.binding.tvTitle?.text = currentList[position].title
+        holder.binding.tvDesc?.text = currentList[position].description
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setupAdaptersList(list: List<NewsItem>) {
-        listOfNewsItems = list
-        notifyDataSetChanged()
+        holder.binding.linearLayoutMain.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("ParcelableNews", currentList[position])
+            holder.itemView.findNavController()
+                .navigate(R.id.action_containerFragment_to_detailNewsFragment, bundle)
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.javacoretraining.module6.screen
+package com.example.javacoretraining.module6.screen.container
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentContainerBinding
-import com.example.javacoretraining.module6.BottomNavigationAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ContainerFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.example.javacoretraining.module6
+package com.example.javacoretraining.module6.screen.container
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
