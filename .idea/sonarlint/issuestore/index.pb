@@ -13,3 +13,9 @@ aapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpGridRecy
 Zapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpRecyclerViewItem.kt,8\3\83fcf1b0703c110d6512f4c32305c3687fda77a8
 †
 Vapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchFragment.kt,2\4\24e2798c88ac1057f111170aa97d355820946d5c
+†
+Vapp/src/main/java/com/example/javacoretraining/module6/screen/filter/FilterFragment.kt,b\b\bbcddf24ba82d22f7751cfa45728eef11f622afc
+‡
+Wapp/src/main/java/com/example/javacoretraining/module6/screen/news/NewsListViewModel.kt,e\3\e3db4207722f1bc9c1899e7e882459fd174a5b65
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164

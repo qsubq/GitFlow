@@ -2,16 +2,34 @@ package com.example.javacoretraining.module6.screen.news
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 data class NewsItem(
+    @SerializedName("id")
     val id: Int,
+
+    @SerializedName("imgId")
     val imgId: Int,
+
+    @SerializedName("category")
     val category: Int,
+
+    @SerializedName("title")
     val title: String?,
+
+    @SerializedName("description")
     val description: String?,
+
+    @SerializedName("date")
     val date: String?,
+
+    @SerializedName("fond")
     val fond: String?,
+
+    @SerializedName("place")
     val place: String?,
+
+    @SerializedName("numbers")
     val numbers: String?,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

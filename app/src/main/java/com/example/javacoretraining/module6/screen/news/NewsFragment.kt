@@ -9,6 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentNewsBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
@@ -33,72 +35,17 @@ class NewsFragment : Fragment() {
         }
         binding.rvNews.adapter = newsRecyclerViewAdapter
 
-        val listOfNewsItems = listOf<NewsItem>(
-            NewsItem(
-                0,
-                R.drawable.avatar_1,
-                0,
-                "Спонсоры отремонтируют школу-интернат",
-                "Дубовская школа-интернат для детей\n" +
-                    "с ограниченными возможностями здоровья стала первой в области …",
-                "Осталось 13 дней (21.09 – 20.10)",
-                "Благотворительный Фонд «Счастливый Мир»",
-                "Санкт-Петербург, Кирочная улица,\n д. 50А, каб. 208",
-                "+7 (937) 037 37-73\n+7 (937) 016 16-16",
-            ),
-            NewsItem(
-                1,
-                R.drawable.avatar_2,
-                1,
-                "Спонсоры отремонтируют школу-интернат",
-                "Дубовская школа-интернат для детей\n" +
-                    "с ограниченными возможностями здоровья стала первой в области …",
-                "Осталось 13 дней (21.09 – 20.225)",
-                "Благотворительный Фонд «Счастливый Мир»",
-                "Санкт-Петербург, Кирочная улица,\n д. 50А, каб. 208",
-                "+7 (937) 037 37-73\n+7 (937) 016 16-16",
-            ),
-            NewsItem(
-                2,
-                R.drawable.heart_circle_icon,
-                0,
-                "Спонсоры отремонтируют школу-интернат",
-                "Дубовская школа-интернат для детей\n" +
-                    "с ограниченными возможностями здоровья стала первой в области …",
-                "Осталось 13 дней (21.09 – 20.10)",
-                "Благотворительный Фонд «Счастливый Мир»",
-                "Санкт-Петербург, Кирочная улица,\n д. 50А, каб. 208",
-                "+7 (937) 037 37-73\n+7 (937) 016 16-16",
-            ),
-            NewsItem(
-                3,
-                R.drawable.avatar_4,
-                3,
-                "Спонсоры отремонтируют школу-интернат",
-                "Дубовская школа-интернат для детей\n" +
-                    "с ограниченными возможностями здоровья стала первой в области …",
-                "Осталось 16 дней (21.09 – 20.10)",
-                "Благотворительный Фонд «Счастливый Мир»",
-                "Санкт-Петербург, Кирочная улица,\n д. 50А, каб. 208",
-                "+7 (937) 037 37-73\n+7 (937) 016 16-16",
-            ),
-            NewsItem(
-                4,
-                R.drawable.avatar_3,
-                3,
-                "Спонсоры отремонтируют школу-интернат",
-                "Дубовская школа-интернат для детей\n" +
-                    "с ограниченными возможностями здоровья стала первой в области …",
-                "Осталось 16 дней (21.09 – 20.10)",
-                "Благотворительный Фонд «Счастливый Мир»",
-                "Санкт-Петербург, Кирочная улица,\n д. 50А, каб. 208",
-                "+7 (937) 037 37-73\n+7 (937) 016 16-16",
-            ),
-        )
-        newsRecyclerViewAdapter.submitList(listOfNewsItems)
+        val gson = Gson()
+        val jsonFileString =
+            JsonConverterIntoArray().getJsonFromAssets(requireContext(), "Events.json")
+        val typeToken = object : TypeToken<List<NewsItem>>() {}.type
+        val newsItemFormJson: List<NewsItem> =
+            gson.fromJson(jsonFileString, typeToken)
+
+        newsRecyclerViewAdapter.submitList(newsItemFormJson)
 
         newsListViewModel.filters.observe(viewLifecycleOwner) { set ->
-            val newList = listOfNewsItems.filter {
+            val newList = newsItemFormJson.filter {
                 set.contains(it.category)
             }
             newsRecyclerViewAdapter.submitList(newList)

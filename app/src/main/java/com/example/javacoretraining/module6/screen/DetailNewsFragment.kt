@@ -41,7 +41,9 @@ class DetailNewsFragment : Fragment() {
         }
 
         if (newsItem != null) {
-            binding.imgNews1.setImageResource(newsItem.imgId)
+            // Пришлось сделать статичный аватар, т.к json не может содержать id
+            binding.imgNews1.setImageResource(R.drawable.avatar_1)
+
             binding.tvToolbarTitle.text = newsItem.title
             binding.tvTitle.text = newsItem.title
             binding.tvDate.text = newsItem.date

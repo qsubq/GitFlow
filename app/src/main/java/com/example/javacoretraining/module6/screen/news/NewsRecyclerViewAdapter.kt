@@ -38,7 +38,9 @@ class NewsRecyclerViewAdapter() :
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.binding.imgNews.setImageResource(currentList[position].imgId)
+        // Пришлось сделать статичный аватар, т.к json не может содержать id
+        holder.binding.imgNews.setImageResource(R.drawable.avatar_1)
+
         holder.binding.tvDate?.text = currentList[position].date
         holder.binding.tvTitle?.text = currentList[position].title
         holder.binding.tvDesc?.text = currentList[position].description
