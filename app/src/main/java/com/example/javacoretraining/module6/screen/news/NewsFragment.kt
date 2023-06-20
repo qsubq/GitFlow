@@ -9,12 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentNewsBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
-    private val newsListViewModel by activityViewModels<NewsListViewModel>()
+    private val viewModel by activityViewModels<NewsListViewModel>()
     private val newsRecyclerViewAdapter: NewsRecyclerViewAdapter by lazy {
         NewsRecyclerViewAdapter()
     }
@@ -35,20 +33,25 @@ class NewsFragment : Fragment() {
         }
         binding.rvNews.adapter = newsRecyclerViewAdapter
 
-        val gson = Gson()
-        val jsonFileString =
-            JsonConverterIntoArray().getJsonFromAssets(requireContext(), "Events.json")
-        val typeToken = object : TypeToken<List<NewsItem>>() {}.type
-        val newsItemFormJson: List<NewsItem> =
-            gson.fromJson(jsonFileString, typeToken)
+        getList()
 
-        newsRecyclerViewAdapter.submitList(newsItemFormJson)
+        var listOfNews = emptyList<NewsItem>()
+        viewModel.newsList.observe(viewLifecycleOwner) { list ->
+            binding.progressBar.visibility = View.GONE
+            listOfNews = list
+            newsRecyclerViewAdapter.submitList(list)
+        }
 
-        newsListViewModel.filters.observe(viewLifecycleOwner) { set ->
-            val newList = newsItemFormJson.filter {
+        viewModel.filters.observe(viewLifecycleOwner) { set ->
+            val newList = listOfNews.filter {
                 set.contains(it.category)
             }
             newsRecyclerViewAdapter.submitList(newList)
         }
+    }
+
+    private fun getList() {
+        binding.progressBar.visibility = View.VISIBLE
+        viewModel.getListFromJson()
     }
 }
