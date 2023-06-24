@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.NewsRecyclerViewItemLayoutBinding
+import com.example.javacoretraining.module6.screen.container.NewsCounter
 
 class NewsRecyclerViewAdapter() :
     ListAdapter<NewsItem, NewsRecyclerViewAdapter.NewsViewHolder>(DiffCallback()) {
@@ -39,13 +40,25 @@ class NewsRecyclerViewAdapter() :
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         // Пришлось сделать статичный аватар, т.к json не может содержать id
-        holder.binding.imgNews.setImageResource(R.drawable.avatar_1)
+        when (position) {
+            0 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_1)
+            1 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_2)
+            2 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_3)
+            3 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_1)
+            4 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_2)
+            5 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_2)
+            6 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_3)
+        }
 
         holder.binding.tvDate?.text = currentList[position].date
         holder.binding.tvTitle?.text = currentList[position].title
         holder.binding.tvDesc?.text = currentList[position].description
 
         holder.binding.linearLayoutMain.setOnClickListener {
+            if (!NewsCounter.readedNews.contains(currentList[position])) {
+                NewsCounter.onNewsRead()
+                NewsCounter.readedNews.add(currentList[position])
+            }
             val bundle = Bundle()
             bundle.putParcelable("ParcelableNews", currentList[position])
             holder.itemView.findNavController()

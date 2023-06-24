@@ -44,7 +44,7 @@ class FilterFragment : Fragment() {
                 numbersOfActivatedSwitches.add(3)
             }
 
-            newsListViewModel.filters.value = numbersOfActivatedSwitches
+            newsListViewModel.filtersCategory.value = numbersOfActivatedSwitches
             this.findNavController().navigate(R.id.action_filterFragment_to_containerFragment)
         }
     }

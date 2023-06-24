@@ -3,8 +3,6 @@
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 Ä
 Papp/src/main/java/com/example/javacoretraining/module6/screen/HistoryFragment.kt,e\3\e385783fbf299360b9f2ad4a35be7c0476b67f81
-ã
-[app/src/main/java/com/example/javacoretraining/module6/screen/search/SearchInNKOFragment.kt,e\9\e977bf5b527481995558bf4dc0e11555ec71f2c9
 ë
 aapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchRecyclerViewAdapter.kt,b\1\b1f2e076da871ea3bb00fe0fe433fecaebf1daeb
 ë
@@ -13,11 +11,27 @@ aapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpGridRecy
 Zapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpRecyclerViewItem.kt,8\3\83fcf1b0703c110d6512f4c32305c3687fda77a8
 Ü
 Vapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchFragment.kt,2\4\24e2798c88ac1057f111170aa97d355820946d5c
-Ü
-Vapp/src/main/java/com/example/javacoretraining/module6/screen/filter/FilterFragment.kt,b\b\bbcddf24ba82d22f7751cfa45728eef11f622afc
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-é
-^app/src/main/java/com/example/javacoretraining/module6/screen/search/SearchInEventsFragment.kt,7\f\7f2ef643394502e14099d1eb57ba6e6f126435ab
 ~
 Napp/src/main/java/com/example/javacoretraining/module6/screen/news/NewsItem.kt,2\0\2065f782dc11be3c3b2e426816adba932c303d24
+å
+\app/src/main/java/com/example/javacoretraining/module6/screen/news/JsonConverterIntoArray.kt,6\b\6b7390c118dffc5522f74c07a2d3d0c840952972
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+D
+Module4/build.gradle,8\5\85ee3fe91b5f321e98087584daaf864eb0736f62
+Ü
+Vapp/src/main/java/com/example/javacoretraining/module6/screen/filter/FilterFragment.kt,b\b\bbcddf24ba82d22f7751cfa45728eef11f622afc
+ã
+[app/src/main/java/com/example/javacoretraining/module6/screen/search/SearchInNKOFragment.kt,e\9\e977bf5b527481995558bf4dc0e11555ec71f2c9
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+å
+\app/src/main/java/com/example/javacoretraining/module6/screen/container/ContainerFragment.kt,8\b\8b9faa5181f143f006f6ad5f732385f916cc0e1e
+Ç
+Rapp/src/main/java/com/example/javacoretraining/module6/screen/auth/AuthFragment.kt,f\2\f2eb20f9c229447678d2bbc91b93b3509b97998d
+ç
+]app/src/main/java/com/example/javacoretraining/module6/screen/news/NewsRecyclerViewAdapter.kt,c\7\c7b08a1e49f0ed5a7a2c035a77d6bef3a029cfa2
+Ü
+Vapp/src/main/java/com/example/javacoretraining/module6/screen/container/NewsCounter.kt,5\1\51dd2b7a79f7d9ccb21584ca599710018c3e302a
+Ç
+Rapp/src/main/java/com/example/javacoretraining/module6/screen/news/NewsFragment.kt,1\a\1ab05f9d3d27511a99146362cba46efbbe24b0a8

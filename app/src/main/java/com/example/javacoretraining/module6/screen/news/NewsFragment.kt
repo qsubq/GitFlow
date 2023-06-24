@@ -1,6 +1,8 @@
 package com.example.javacoretraining.module6.screen.news
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentNewsBinding
+import com.example.javacoretraining.module6.screen.container.NewsCounter
+import com.example.javacoretraining.module6.screen.container.NewsCounter.onFilterChanged
+import com.google.android.material.tabs.TabLayout
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
@@ -26,6 +33,7 @@ class NewsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.imgToolbar.setOnClickListener {
@@ -33,24 +41,45 @@ class NewsFragment : Fragment() {
         }
         binding.rvNews.adapter = newsRecyclerViewAdapter
 
-        getList()
+        val tabLayout = this.parentFragment?.view?.findViewById<TabLayout>(R.id.tabLayout)
+        NewsCounter.getUnreadCount().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe() { count ->
+                if (tabLayout != null) {
+                    tabLayout.getTabAt(0)?.orCreateBadge?.number = count
+                }
+            }
 
-        var listOfNews = emptyList<NewsItem>()
         viewModel.newsList.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.GONE
-            listOfNews = list
+            Log.i("Tag", "List of news is updated ${list.size}")
+            val newsCount = NewsCounter.getUnreadCountInt()
+            if (newsCount == 0) {
+                onFilterChanged(list.size)
+            }
+
             newsRecyclerViewAdapter.submitList(list)
         }
-
-        viewModel.filters.observe(viewLifecycleOwner) { set ->
-            val newList = listOfNews.filter {
+        viewModel.filtersCategory.observe(viewLifecycleOwner) { set ->
+            val list = viewModel.newsList.value
+            val filteredList = list?.filter {
                 set.contains(it.category)
             }
-            newsRecyclerViewAdapter.submitList(newList)
+            viewModel.newsList.value = filteredList
+
+            if (filteredList != null) {
+                Log.i("Tag", "filtered list is not null and size ${filteredList.size}")
+                onFilterChanged(filteredList.size)
+            }
+            newsRecyclerViewAdapter.submitList(filteredList)
+        }
+
+        if (viewModel.newsList.value.isNullOrEmpty()) {
+            getFullListOfNews()
         }
     }
 
-    private fun getList() {
+    private fun getFullListOfNews() {
         binding.progressBar.visibility = View.VISIBLE
         viewModel.getListFromJson()
     }

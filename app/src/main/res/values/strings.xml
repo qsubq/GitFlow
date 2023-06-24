@@ -28,4 +28,10 @@
     <string name="prof_help">Проф. помощью</string>
     <string name="stuff">Вещами</string>
     <string name="with_money">Деньгами</string>
+    <string name="auth">Авторизация</string>
+    <string name="hint_email">Введите e-mail</string>
+    <string name="password">Пароль</string>
+    <string name="password_hint">Введите пароль</string>
+    <string name="forget_password">Забыли пароль?</string>
+    <string name="registration">Регистрация</string>
 </resources>

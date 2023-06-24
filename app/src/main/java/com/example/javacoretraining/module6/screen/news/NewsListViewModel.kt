@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken
 import java.util.concurrent.Executors
 
 class NewsListViewModel(private val context: Application) : AndroidViewModel(context) {
-    val filters = MutableLiveData<Set<Int>>()
+    val filtersCategory = MutableLiveData<Set<Int>>()
     val newsList: MutableLiveData<List<NewsItem>> = MutableLiveData()
 
     fun getListFromJson() {
