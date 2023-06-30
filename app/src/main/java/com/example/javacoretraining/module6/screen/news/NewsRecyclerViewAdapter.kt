@@ -1,6 +1,7 @@
 package com.example.javacoretraining.module6.screen.news
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -56,6 +57,7 @@ class NewsRecyclerViewAdapter() :
 
         holder.binding.linearLayoutMain.setOnClickListener {
             if (!NewsCounter.readedNews.contains(currentList[position])) {
+                Log.i("Tag", "OnNewsRead")
                 NewsCounter.onNewsRead()
                 NewsCounter.readedNews.add(currentList[position])
             }

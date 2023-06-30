@@ -8,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentNewsBinding
 import com.example.javacoretraining.module6.screen.container.NewsCounter
 import com.example.javacoretraining.module6.screen.container.NewsCounter.onFilterChanged
+import com.example.javacoretraining.module6.screen.utils.ErrorDialog
 import com.google.android.material.tabs.TabLayout
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
@@ -42,13 +44,22 @@ class NewsFragment : Fragment() {
         binding.rvNews.adapter = newsRecyclerViewAdapter
 
         val tabLayout = this.parentFragment?.view?.findViewById<TabLayout>(R.id.tabLayout)
-        NewsCounter.getUnreadCount().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe() { count ->
-                if (tabLayout != null) {
-                    tabLayout.getTabAt(0)?.orCreateBadge?.number = count
+
+        val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            ErrorDialog(throwable.cause?.message.toString(), throwable.message.toString()).show(
+                requireActivity().supportFragmentManager,
+                "ErrorDialog",
+            )
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch(handler) {
+            NewsCounter.getUnreadCountFlow()
+                .collect { count ->
+                    if (tabLayout != null) {
+                        tabLayout.getTabAt(0)?.orCreateBadge?.number = count
+                    }
                 }
-            }
+        }
 
         viewModel.newsList.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.GONE
@@ -57,7 +68,6 @@ class NewsFragment : Fragment() {
             if (newsCount == 0) {
                 onFilterChanged(list.size)
             }
-
             newsRecyclerViewAdapter.submitList(list)
         }
         viewModel.filtersCategory.observe(viewLifecycleOwner) { set ->
@@ -68,8 +78,11 @@ class NewsFragment : Fragment() {
             viewModel.newsList.value = filteredList
 
             if (filteredList != null) {
-                Log.i("Tag", "filtered list is not null and size ${filteredList.size}")
+                Log.i("Tag", "Filtered list is not null and size: ${filteredList.size}")
                 onFilterChanged(filteredList.size)
+                Log.i("Tag", "News counter = ${NewsCounter.getUnreadCountInt()}")
+                NewsCounter.readedNews = mutableListOf()
+                Log.i("Tag", "News counter2 = ${NewsCounter.getUnreadCountInt()}")
             }
             newsRecyclerViewAdapter.submitList(filteredList)
         }

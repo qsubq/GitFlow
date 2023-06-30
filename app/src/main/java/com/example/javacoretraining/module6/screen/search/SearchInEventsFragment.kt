@@ -1,6 +1,5 @@
 package com.example.javacoretraining.module6.screen.search
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -15,16 +14,21 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentSearchInEventsBinding
-import com.example.javacoretraining.module6.screen.news.NewsItem
 import com.example.javacoretraining.module6.screen.news.NewsRecyclerViewAdapter
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.Random
-import java.util.concurrent.TimeUnit
+import com.example.javacoretraining.module6.screen.utils.ErrorDialog
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 
+@FlowPreview
 class SearchInEventsFragment : Fragment() {
     private lateinit var binding: FragmentSearchInEventsBinding
     private val viewModel by viewModels<SearchViewModel>()
@@ -41,91 +45,51 @@ class SearchInEventsFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rcViewSearch.adapter = newsRecyclerViewAdapter
         setSpannableText()
         showPlugView()
 
-        var listOfNews = emptyList<NewsItem>()
+        var listOfNews = viewModel.getItemsJson()
         viewModel.newsList.observe(viewLifecycleOwner) { list ->
             listOfNews = list
         }
 
-        val listObservable = viewModel.getItemsFromJson()
-
-        listObservable
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.i("RxTraining", "doOnNext: ${Thread.currentThread().name}")
-            }
-            .subscribe { items ->
-                Log.i("RxTraining", "onNext: ${Thread.currentThread().name}")
-                viewModel.newsList.value = items
-            }
-
-        // Оператор объединения двух Observable
-        val randomObservable = Observable.create<Int> { subscriber ->
-            var x = 0
-            while (!subscriber.isDisposed) {
-                subscriber.onNext(Random().nextInt(100))
-                Thread.sleep(1000)
-            }
-        }
-
-        Observable.zip(listObservable, randomObservable) { items, random ->
-            Pair(items, random)
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.computation())
-            .doOnNext { pair ->
-                Log.i("RxExample", "Zip: ${Thread.currentThread().name}")
-                Log.i("RxExample", "Zip: ${pair.first}, ${pair.second}")
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.i("RxExample", "doOnNext: ${Thread.currentThread().name}")
-            }
-            .subscribe { pair ->
-                viewModel.newsList.value = pair.first
-            }
-
-        // Добавление двух observeOn в цепочке с разными планировщиками
-        listObservable
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.i("RxExample", "doOnNext: ${Thread.currentThread().name}")
-            }
-            .subscribe { items ->
-                Log.i("RxExample", "onNext: ${Thread.currentThread().name}")
-                viewModel.newsList.value = items
-            }
-
         viewModel.searchString.observe(viewLifecycleOwner) { string ->
-
+            Log.i("Tag", "Observe searchString ${listOfNews.size} items")
             val filteredList = listOfNews.filter {
                 it.title?.contains(string) ?: false
             }
-            if (string.isNotEmpty()) {
+            if (string.isNotBlank()) {
+                Log.i(
+                    "Tag",
+                    "Search is not empty and filtered list has ${filteredList.size} items and string: $string",
+                )
                 showRecyclerView()
                 newsRecyclerViewAdapter.submitList(filteredList)
             } else {
+                Log.i("Tag", "Search is empty")
                 showPlugView()
             }
         }
 
-        val searchView: SearchView? = parentFragment?.view?.findViewById(R.id.newsSearchView)
-        if (searchView != null) {
-            val observable = searchViewObservable(searchView)
-            observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe() { query ->
-                    viewModel.searchString.value = query
-                }
+        val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            ErrorDialog(throwable.cause?.message.toString(), throwable.message.toString()).show(
+                requireActivity().supportFragmentManager,
+                "ErrorDialog",
+            )
+        }
+        viewLifecycleOwner.lifecycleScope.launch(handler) {
+            val searchView: SearchView? = parentFragment?.view?.findViewById(R.id.newsSearchView)
+            if (searchView != null) {
+                searchView.getQueryTextChangeStateFlow()
+                    .debounce(600)
+                    .flowOn(Dispatchers.Unconfined)
+                    .collect { result ->
+                        viewModel.searchString.value = result
+                    }
+            }
         }
     }
 
@@ -149,31 +113,22 @@ class SearchInEventsFragment : Fragment() {
         binding.materialDivider1.visibility = View.GONE
     }
 
-    @SuppressLint("CheckResult")
-    private fun searchViewObservable(searchView: SearchView): Observable<String> {
-        return Observable.create { emitter ->
-            val textChangeObservable = Observable.create { observer ->
-                val queryListener = object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?): Boolean {
-                        return false
-                    }
+    private fun SearchView.getQueryTextChangeStateFlow(): StateFlow<String> {
+        val searchQuery = MutableStateFlow("")
+        setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        observer.onNext(newText ?: "")
-                        return true
-                    }
-                }
-                searchView.setOnQueryTextListener(queryListener)
-                emitter.setCancellable {
-                    searchView.setOnQueryTextListener(null)
-                }
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
             }
 
-            val debounceObservable = textChangeObservable.debounce(500, TimeUnit.MILLISECONDS)
-            debounceObservable.subscribe { query ->
-                emitter.onNext(query)
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    searchQuery.value = newText
+                }
+                return true
             }
-        }
+        })
+        return searchQuery
     }
 
     private fun setSpannableText() {
