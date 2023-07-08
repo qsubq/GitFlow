@@ -1,11 +1,11 @@
 package com.example.javacoretraining.module6.screen.container
 
-import com.example.javacoretraining.module6.screen.news.NewsItem
+import com.example.javacoretraining.data.model.listModel.Data
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object NewsCounter {
     private val unreadCount = MutableStateFlow(0)
-    var readedNews = mutableListOf<NewsItem>()
+    var readedNews = mutableListOf<Data>()
 
     fun onNewsRead() {
         val count = unreadCount.value

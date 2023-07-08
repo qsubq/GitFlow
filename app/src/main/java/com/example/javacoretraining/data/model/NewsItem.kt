@@ -1,4 +1,4 @@
-package com.example.javacoretraining.module6.screen.news
+package com.example.javacoretraining.data.model
 
 import android.os.Parcel
 import android.os.Parcelable

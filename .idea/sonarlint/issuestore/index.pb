@@ -13,19 +13,15 @@ Zapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpRecycler
 Vapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchFragment.kt,2\4\24e2798c88ac1057f111170aa97d355820946d5c
 Œ
 \app/src/main/java/com/example/javacoretraining/module6/screen/news/JsonConverterIntoArray.kt,6\b\6b7390c118dffc5522f74c07a2d3d0c840952972
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-D
-Module4/build.gradle,8\5\85ee3fe91b5f321e98087584daaf864eb0736f62
 †
 Vapp/src/main/java/com/example/javacoretraining/module6/screen/filter/FilterFragment.kt,b\b\bbcddf24ba82d22f7751cfa45728eef11f622afc
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 Œ
 \app/src/main/java/com/example/javacoretraining/module6/screen/container/ContainerFragment.kt,8\b\8b9faa5181f143f006f6ad5f732385f916cc0e1e
 ‚
 Rapp/src/main/java/com/example/javacoretraining/module6/screen/auth/AuthFragment.kt,f\2\f2eb20f9c229447678d2bbc91b93b3509b97998d
-~
-Napp/src/main/java/com/example/javacoretraining/module6/screen/news/NewsItem.kt,2\0\2065f782dc11be3c3b2e426816adba932c303d24
 ‹
 [app/src/main/java/com/example/javacoretraining/module6/screen/search/SearchInNKOFragment.kt,e\9\e977bf5b527481995558bf4dc0e11555ec71f2c9
+‚
+Rapp/src/main/java/com/example/javacoretraining/module6/screen/utils/ErrorDialog.kt,f\3\f37a76be5c55e6c34f6bd32533a53f1487e45e57
+†
+Vapp/src/main/java/com/example/javacoretraining/module6/screen/container/NewsCounter.kt,5\1\51dd2b7a79f7d9ccb21584ca599710018c3e302a

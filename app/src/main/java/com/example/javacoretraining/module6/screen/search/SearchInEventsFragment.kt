@@ -51,28 +51,28 @@ class SearchInEventsFragment : Fragment() {
         setSpannableText()
         showPlugView()
 
-        var listOfNews = viewModel.getItemsJson()
-        viewModel.newsList.observe(viewLifecycleOwner) { list ->
-            listOfNews = list
-        }
-
-        viewModel.searchString.observe(viewLifecycleOwner) { string ->
-            Log.i("Tag", "Observe searchString ${listOfNews.size} items")
-            val filteredList = listOfNews.filter {
-                it.title?.contains(string) ?: false
-            }
-            if (string.isNotBlank()) {
-                Log.i(
-                    "Tag",
-                    "Search is not empty and filtered list has ${filteredList.size} items and string: $string",
-                )
-                showRecyclerView()
-                newsRecyclerViewAdapter.submitList(filteredList)
-            } else {
-                Log.i("Tag", "Search is empty")
-                showPlugView()
-            }
-        }
+//        var listOfNews = viewModel.getItemsJson()
+//        viewModel.newsList.observe(viewLifecycleOwner) { list ->
+//            listOfNews = list
+//        }
+//
+//        viewModel.searchString.observe(viewLifecycleOwner) { string ->
+//            Log.i("Tag", "Observe searchString ${listOfNews.size} items")
+//            val filteredList = listOfNews.filter {
+//                it.title?.contains(string) ?: false
+//            }
+//            if (string.isNotBlank()) {
+//                Log.i(
+//                    "Tag",
+//                    "Search is not empty and filtered list has ${filteredList.size} items and string: $string",
+//                )
+//                showRecyclerView()
+//                newsRecyclerViewAdapter.submitList(filteredList)
+//            } else {
+//                Log.i("Tag", "Search is empty")
+//                showPlugView()
+//            }
+//        }
 
         val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
             ErrorDialog(throwable.cause?.message.toString(), throwable.message.toString()).show(

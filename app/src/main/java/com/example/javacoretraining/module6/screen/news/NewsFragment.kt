@@ -61,39 +61,31 @@ class NewsFragment : Fragment() {
                 }
         }
 
-        viewModel.newsList.observe(viewLifecycleOwner) { list ->
+        viewModel.newsListJson.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.GONE
             Log.i("Tag", "List of news is updated ${list.size}")
             val newsCount = NewsCounter.getUnreadCountInt()
             if (newsCount == 0) {
                 onFilterChanged(list.size)
             }
-            newsRecyclerViewAdapter.submitList(list)
-        }
-        viewModel.filtersCategory.observe(viewLifecycleOwner) { set ->
-            val list = viewModel.newsList.value
-            val filteredList = list?.filter {
-                set.contains(it.category)
-            }
-            viewModel.newsList.value = filteredList
-
-            if (filteredList != null) {
-                Log.i("Tag", "Filtered list is not null and size: ${filteredList.size}")
-                onFilterChanged(filteredList.size)
-                Log.i("Tag", "News counter = ${NewsCounter.getUnreadCountInt()}")
-                NewsCounter.readedNews = mutableListOf()
-                Log.i("Tag", "News counter2 = ${NewsCounter.getUnreadCountInt()}")
-            }
-            newsRecyclerViewAdapter.submitList(filteredList)
         }
 
-        if (viewModel.newsList.value.isNullOrEmpty()) {
+        viewModel.newsListFromServer.observe(viewLifecycleOwner) { response ->
+            binding.progressBar.visibility = View.GONE
+            if (response.code() == 200) {
+                newsRecyclerViewAdapter.submitList(response.body()?.data)
+            } else {
+                // Делаем загрузку с json'а
+            }
+        }
+
+        if (viewModel.newsListFromServer.value == null) {
             getFullListOfNews()
         }
     }
 
     private fun getFullListOfNews() {
         binding.progressBar.visibility = View.VISIBLE
-        viewModel.getListFromJson()
+        viewModel.getListFromServer()
     }
 }

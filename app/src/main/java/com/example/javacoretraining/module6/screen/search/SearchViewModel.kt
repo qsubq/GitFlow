@@ -4,13 +4,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.javacoretraining.module6.screen.news.JsonConverterIntoArray
-import com.example.javacoretraining.module6.screen.news.NewsItem
+import com.example.javacoretraining.data.model.NewsItem
+import com.example.javacoretraining.data.model.listModel.ListModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import retrofit2.Response
 
 class SearchViewModel(private val context: Application) : AndroidViewModel(context) {
     val searchString = MutableLiveData<String>()
-    val newsList: MutableLiveData<List<NewsItem>> = MutableLiveData()
+    val newsList: MutableLiveData<Response<ListModel>> = MutableLiveData()
 
     fun getItemsJson(): List<NewsItem> {
         val gson = Gson()
