@@ -51,28 +51,30 @@ class SearchInEventsFragment : Fragment() {
         setSpannableText()
         showPlugView()
 
-//        var listOfNews = viewModel.getItemsJson()
-//        viewModel.newsList.observe(viewLifecycleOwner) { list ->
-//            listOfNews = list
-//        }
-//
-//        viewModel.searchString.observe(viewLifecycleOwner) { string ->
-//            Log.i("Tag", "Observe searchString ${listOfNews.size} items")
-//            val filteredList = listOfNews.filter {
-//                it.title?.contains(string) ?: false
-//            }
-//            if (string.isNotBlank()) {
-//                Log.i(
-//                    "Tag",
-//                    "Search is not empty and filtered list has ${filteredList.size} items and string: $string",
-//                )
-//                showRecyclerView()
-//                newsRecyclerViewAdapter.submitList(filteredList)
-//            } else {
-//                Log.i("Tag", "Search is empty")
-//                showPlugView()
-//            }
-//        }
+        viewModel.newsListFromServer.observe(viewLifecycleOwner) { list ->
+        }
+
+        viewModel.searchString.observe(viewLifecycleOwner) { string ->
+            val listOfNews = viewModel.newsListFromServer.value?.body()?.data
+            Log.i("Tag", "Observe searchString ${listOfNews?.size} items")
+
+            val filteredList = listOfNews?.filter {
+                Log.i("Tag", "Data:  ${it.first_name} items")
+                it.first_name.contains(string)
+            }
+
+            if (string.isNotBlank()) {
+                Log.i(
+                    "Tag",
+                    "Search is not empty and filtered list has ${filteredList?.size} items and string: $string",
+                )
+                showRecyclerView()
+                newsRecyclerViewAdapter.submitList(filteredList)
+            } else {
+                Log.i("Tag", "Search is empty")
+                showPlugView()
+            }
+        }
 
         val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
             ErrorDialog(throwable.cause?.message.toString(), throwable.message.toString()).show(
@@ -91,6 +93,8 @@ class SearchInEventsFragment : Fragment() {
                     }
             }
         }
+
+        viewModel.getList()
     }
 
     private fun showRecyclerView() {

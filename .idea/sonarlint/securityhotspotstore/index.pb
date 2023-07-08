@@ -9,8 +9,6 @@ aapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchRecy
 aapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpGridRecyclerViewAdapter.kt,1\3\13dadfe262da69e448e67d19fe9e7b8f590464aa
 Š
 Zapp/src/main/java/com/example/javacoretraining/module6/screen/help/HelpRecyclerViewItem.kt,8\3\83fcf1b0703c110d6512f4c32305c3687fda77a8
-†
-Vapp/src/main/java/com/example/javacoretraining/module6/screen/search/SearchFragment.kt,2\4\24e2798c88ac1057f111170aa97d355820946d5c
 Œ
 \app/src/main/java/com/example/javacoretraining/module6/screen/news/JsonConverterIntoArray.kt,6\b\6b7390c118dffc5522f74c07a2d3d0c840952972
 †
@@ -19,8 +17,6 @@ Vapp/src/main/java/com/example/javacoretraining/module6/screen/filter/FilterFrag
 \app/src/main/java/com/example/javacoretraining/module6/screen/container/ContainerFragment.kt,8\b\8b9faa5181f143f006f6ad5f732385f916cc0e1e
 ‚
 Rapp/src/main/java/com/example/javacoretraining/module6/screen/auth/AuthFragment.kt,f\2\f2eb20f9c229447678d2bbc91b93b3509b97998d
-‹
-[app/src/main/java/com/example/javacoretraining/module6/screen/search/SearchInNKOFragment.kt,e\9\e977bf5b527481995558bf4dc0e11555ec71f2c9
 ‚
 Rapp/src/main/java/com/example/javacoretraining/module6/screen/utils/ErrorDialog.kt,f\3\f37a76be5c55e6c34f6bd32533a53f1487e45e57
 †
