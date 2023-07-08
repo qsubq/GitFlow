@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.javacoretraining.R
 import com.example.javacoretraining.data.model.listModel.Data
 import com.example.javacoretraining.databinding.NewsRecyclerViewItemLayoutBinding
@@ -52,7 +53,10 @@ class NewsRecyclerViewAdapter() :
 //            6 -> holder.binding.imgNews.setImageResource(R.drawable.avatar_3)
 //        }
 
-        Glide.with(holder.itemView.context).load(currentList[position].avatar)
+        Glide.with(holder.itemView.context)
+            .load(currentList[position].avatar)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
             .into(holder.binding.imgNews)
 
         holder.binding.tvDate?.text = currentList[position].email
