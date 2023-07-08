@@ -38,7 +38,9 @@ class NewsListViewModel(private val context: Application) : AndroidViewModel(con
 
     fun getListFromServer() {
         viewModelScope.launch {
-            newsListFromServer.value = remoteRepository.getList()
+            remoteRepository.getList().collect {
+                newsListFromServer.value = it
+            }
         }
     }
 }

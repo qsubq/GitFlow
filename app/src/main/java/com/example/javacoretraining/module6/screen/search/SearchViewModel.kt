@@ -30,7 +30,9 @@ class SearchViewModel(private val context: Application) : AndroidViewModel(conte
 
     fun getList() {
         viewModelScope.launch {
-            newsListFromServer.value = repository.getList()
+            repository.getList().collect {
+                newsListFromServer.value = it
+            }
         }
     }
 }
