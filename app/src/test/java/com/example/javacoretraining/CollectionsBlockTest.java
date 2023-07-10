@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-import com.example.javacoretraining.collections.CollectionsBlock;
+import com.example.javacoretraining.training.collections.CollectionsBlock;
 
 public class CollectionsBlockTest {
 

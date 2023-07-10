@@ -2,12 +2,21 @@ package com.example.javacoretraining.data.model.listModel
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Data(
+    @ColumnInfo
     val avatar: String,
+    @ColumnInfo
     val email: String,
+    @ColumnInfo
     val first_name: String,
+    @PrimaryKey
     val id: Int,
+    @ColumnInfo
     val last_name: String,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

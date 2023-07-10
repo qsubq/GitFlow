@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/containerFragment"
-        android:name="com.example.javacoretraining.module6.screen.container.ContainerFragment"
+        android:name="com.example.javacoretraining.app.presentation.screen.container.ContainerFragment"
         android:label="fragment_container"
         tools:layout="@layout/fragment_container" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/filterFragment"
-        android:name="com.example.javacoretraining.module6.screen.filter.FilterFragment"
+        android:name="com.example.javacoretraining.app.presentation.screen.filter.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailNewsFragment"
-        android:name="com.example.javacoretraining.module6.screen.DetailNewsFragment"
+        android:name="com.example.javacoretraining.app.presentation.screen.detail.DetailNewsFragment"
         android:label="fragment_detail_news"
         tools:layout="@layout/fragment_detail_news" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.javacoretraining.module6.screen.auth.AuthFragment"
+        android:name="com.example.javacoretraining.app.presentation.screen.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
