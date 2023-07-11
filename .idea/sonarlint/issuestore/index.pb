@@ -43,9 +43,7 @@ gapp/src/main/java/com/example/javacoretraining/app/presentation/screen/search/S
 [app/src/main/java/com/example/javacoretraining/app/presentation/screen/news/NewsFragment.kt,6\a\6a49598818882548a596dd54619b1ba5ab99dc3f
 è
 _app/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchFragment.kt,e\8\e8496920bfba11c3b400670682b14f32adb32769
-ê
-`app/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchViewModel.kt,b\4\b42a2bcf76667cfb3c23f4c96674814499f9a2b7
-ê
-`app/src/main/java/com/example/javacoretraining/app/presentation/screen/news/NewsListViewModel.kt,c\e\ce684c3df324a78700b4b936084d61b3abb5fda6
 ö
 japp/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchRecyclerViewAdapter.kt,0\0\00c663f06e07563591cc843106baf3af6b6a7d73
+ê
+`app/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchViewModel.kt,b\4\b42a2bcf76667cfb3c23f4c96674814499f9a2b7

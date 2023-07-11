@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.javacoretraining.data.localDataSource.repository.LocalRepositoryImpl
 import com.example.javacoretraining.data.model.listModel.Data
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SearchViewModel(context: Application) : AndroidViewModel(context) {
@@ -21,7 +22,7 @@ class SearchViewModel(context: Application) : AndroidViewModel(context) {
     }
 
     fun getListFromDataBase() {
-        viewModelScope.launch(handler) {
+        viewModelScope.launch(handler + Dispatchers.IO) {
             newsList.value = localRepository.getAllNews()
         }
     }

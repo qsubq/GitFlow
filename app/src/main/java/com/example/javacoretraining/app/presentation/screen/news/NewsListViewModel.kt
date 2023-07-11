@@ -9,6 +9,7 @@ import com.example.javacoretraining.data.localDataSource.repository.LocalReposit
 import com.example.javacoretraining.data.model.listModel.Data
 import com.example.javacoretraining.data.remoteDataSource.repository.RemoteRepositoryImpl
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NewsListViewModel(context: Application) : AndroidViewModel(context) {
@@ -23,7 +24,7 @@ class NewsListViewModel(context: Application) : AndroidViewModel(context) {
     }
 
     fun getListFromServer() {
-        viewModelScope.launch(handler) {
+        viewModelScope.launch(handler + Dispatchers.IO) {
             remoteRepository.getList().collect {
                 if (it.code() == 200) {
                     it.body()?.data?.let { it1 -> localRepository.insertNews(it1) }
