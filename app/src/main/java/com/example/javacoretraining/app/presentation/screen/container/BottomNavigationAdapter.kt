@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.javacoretraining.app.presentation.screen.help.HelpFragment
 import com.example.javacoretraining.app.presentation.screen.history.HistoryFragment
-import com.example.javacoretraining.app.presentation.screen.news.NewsFragment
 import com.example.javacoretraining.app.presentation.screen.profile.ProfileFragment
-import com.example.javacoretraining.app.presentation.screen.search.SearchFragment
+import com.example.news.presentation.news.NewsFragment
+import com.example.search.presentation.search.SearchFragment
 
 class BottomNavigationAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {

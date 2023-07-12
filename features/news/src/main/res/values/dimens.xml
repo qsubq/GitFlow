@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_start_margin">20dp</dimen>
+    <dimen name="app_bar_image_margin">60dp</dimen>
+    <dimen name="margin_top_16_dp">16dp</dimen>
+    <dimen name="margin_top_12dp">12dp</dimen>
+    <dimen name="margin_top_28dp">28dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="edit_image_view_layout">48dp</dimen>
+    <dimen name="btn_corner_radius">2dp</dimen>
+    <dimen name="standard_text_size">18sp</dimen>
+    <dimen name="gray_text_standard_text_size">14sp</dimen>
+</resources>

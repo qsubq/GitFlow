@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth">Авторизация</string>
+    <string name="hint_email">Введите e-mail</string>
+    <string name="password">Пароль</string>
+    <string name="password_hint">Введите пароль</string>
+    <string name="forget_password">Забыли пароль?</string>
+    <string name="registration">Регистрация</string>
+</resources>

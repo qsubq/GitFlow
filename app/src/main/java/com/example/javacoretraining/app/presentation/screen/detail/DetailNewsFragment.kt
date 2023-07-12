@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentDetailNewsBinding
-import com.example.javacoretraining.data.model.NewsItem
+import com.example.data.model.NewsItem
 
 class DetailNewsFragment : Fragment() {
     private lateinit var binding: FragmentDetailNewsBinding
@@ -34,7 +34,7 @@ class DetailNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val newsItem = arguments?.getParcelable("ParcelableNews", NewsItem::class.java)
+        val newsItem = arguments?.getParcelable("ParcelableNews", com.example.data.model.NewsItem::class.java)
 
         binding.imgBack.setOnClickListener {
             this.findNavController().navigate(R.id.action_detailNewsFragment_to_containerFragment)

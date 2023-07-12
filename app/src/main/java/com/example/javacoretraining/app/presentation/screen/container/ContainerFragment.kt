@@ -55,6 +55,5 @@ class ContainerFragment : Fragment() {
                 }
             }
         }.attach()
-
     }
 }
