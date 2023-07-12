@@ -1,0 +1,9 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.search" >
+4
+5    <uses-sdk android:minSdkVersion="30" />
+5-->C:\Users\Zzz\AndroidStudioProjects\1.GitFlow\GitFlow\features\search\src\main\AndroidManifest.xml:3:5-43
+5-->C:\Users\Zzz\AndroidStudioProjects\1.GitFlow\GitFlow\features\search\src\main\AndroidManifest.xml:3:15-41
+6
+7</manifest>

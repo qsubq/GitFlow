@@ -5,14 +5,15 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.javacoretraining.data.localDataSource.repository.LocalRepositoryImpl
 import com.example.javacoretraining.data.model.listModel.Data
+import com.example.javacoretraining.domain.useCase.GetNewsFromDataBaseUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SearchViewModel(context: Application) : AndroidViewModel(context) {
-    private val localRepository = LocalRepositoryImpl(context)
+class SearchViewModel(
+    val context: Application,
+    val getNewsFromDataBaseUseCase: GetNewsFromDataBaseUseCase,
+) : AndroidViewModel(context) {
 
     val searchString = MutableLiveData<String>()
     val newsList: MutableLiveData<List<Data>> = MutableLiveData()
@@ -22,8 +23,8 @@ class SearchViewModel(context: Application) : AndroidViewModel(context) {
     }
 
     fun getListFromDataBase() {
-        viewModelScope.launch(handler + Dispatchers.IO) {
-            newsList.value = localRepository.getAllNews()
+        viewModelScope.launch(handler) {
+            newsList.value = getNewsFromDataBaseUseCase.execute()
         }
     }
 }

@@ -5,15 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
+import com.example.javacoretraining.app.App
 import com.example.javacoretraining.app.presentation.screen.news.NewsListViewModel
+import com.example.javacoretraining.app.presentation.screen.news.NewsViewModelFactory
 import com.example.javacoretraining.databinding.FragmentFilterBinding
+import javax.inject.Inject
 
 class FilterFragment : Fragment() {
     private lateinit var binding: FragmentFilterBinding
-    private val newsListViewModel by activityViewModels<NewsListViewModel>()
+    private lateinit var newsListViewModel: NewsListViewModel
+
+    @Inject
+    lateinit var newsViewModelFactory: NewsViewModelFactory
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this)
+
+        newsListViewModel = ViewModelProvider(this, newsViewModelFactory)
+            .get(NewsListViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

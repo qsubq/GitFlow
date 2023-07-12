@@ -7,28 +7,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.javacoretraining.R
+import com.example.javacoretraining.app.App
 import com.example.javacoretraining.app.presentation.screen.container.NewsCounter
 import com.example.javacoretraining.app.presentation.screen.container.NewsCounter.onFilterChanged
-import com.example.javacoretraining.app.presentation.screen.utils.ErrorDialog
+import com.example.javacoretraining.app.presentation.utils.ErrorDialog
 import com.example.javacoretraining.data.model.listModel.Data
 import com.example.javacoretraining.databinding.FragmentNewsBinding
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
-    private val viewModel by activityViewModels<NewsListViewModel>()
+    private lateinit var viewModel: NewsListViewModel
     private val newsRecyclerViewAdapter: NewsRecyclerViewAdapter by lazy {
         NewsRecyclerViewAdapter()
     }
 
+    @Inject
+    lateinit var newsViewModelFactory: NewsViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this)
+
+        viewModel = ViewModelProvider(this, newsViewModelFactory)
+            .get(NewsListViewModel::class.java)
         viewModel.getListFromServer()
     }
 

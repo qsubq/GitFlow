@@ -13,11 +13,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.javacoretraining.R
+import com.example.javacoretraining.app.App
 import com.example.javacoretraining.app.presentation.screen.news.NewsRecyclerViewAdapter
-import com.example.javacoretraining.app.presentation.screen.utils.ErrorDialog
+import com.example.javacoretraining.app.presentation.utils.ErrorDialog
 import com.example.javacoretraining.databinding.FragmentSearchInEventsBinding
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -27,13 +28,25 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @FlowPreview
 class SearchInEventsFragment : Fragment() {
     private lateinit var binding: FragmentSearchInEventsBinding
-    private val viewModel by viewModels<SearchViewModel>()
+    lateinit var viewModel: SearchViewModel
     private val newsRecyclerViewAdapter: NewsRecyclerViewAdapter by lazy {
         NewsRecyclerViewAdapter()
+    }
+
+    @Inject
+    lateinit var searchViewModelFactory: SearchViewModelFactory
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this)
+
+        viewModel = ViewModelProvider(this, searchViewModelFactory)
+            .get(SearchViewModel::class.java)
     }
 
     override fun onCreateView(

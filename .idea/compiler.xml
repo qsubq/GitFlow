@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="JavaCoreTraining.data" target="17" />
+      <module name="JavaCoreTraining.features.auth" target="17" />
+      <module name="JavaCoreTraining.features.filter" target="17" />
+      <module name="JavaCoreTraining.features.news" target="17" />
+      <module name="JavaCoreTraining.features.search" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

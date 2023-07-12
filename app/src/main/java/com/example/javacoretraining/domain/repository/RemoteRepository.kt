@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface RemoteRepository {
-    suspend fun getList(): Flow<Response<ListModel>>
+    fun getList(): Flow<Response<ListModel>>
 }

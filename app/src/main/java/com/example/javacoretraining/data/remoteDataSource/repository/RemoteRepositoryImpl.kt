@@ -10,7 +10,7 @@ import retrofit2.Response
 class RemoteRepositoryImpl : RemoteRepository {
     private val api = Retrofit.api
 
-    override suspend fun getList(): Flow<Response<ListModel>> {
+    override fun getList(): Flow<Response<ListModel>> {
         return flow {
             emit(api.getList())
         }

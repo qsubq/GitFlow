@@ -5,16 +5,20 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.javacoretraining.data.localDataSource.repository.LocalRepositoryImpl
+import com.example.javacoretraining.app.App
 import com.example.javacoretraining.data.model.listModel.Data
-import com.example.javacoretraining.data.remoteDataSource.repository.RemoteRepositoryImpl
+import com.example.javacoretraining.domain.useCase.GetNewsFromDataBaseUseCase
+import com.example.javacoretraining.domain.useCase.GetNewsFromServerUseCase
+import com.example.javacoretraining.domain.useCase.InsertNewsIntoDataBaseUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NewsListViewModel(context: Application) : AndroidViewModel(context) {
-    private val remoteRepository = RemoteRepositoryImpl()
-    private val localRepository = LocalRepositoryImpl(context)
+class NewsListViewModel(
+    private val context: Application,
+    val getNewsFromServerUseCase: GetNewsFromServerUseCase,
+    val getNewsFromDataBaseUseCase: GetNewsFromDataBaseUseCase,
+    val insertNewsIntoDataBaseUseCase: InsertNewsIntoDataBaseUseCase
+) : AndroidViewModel(context) {
 
     val filtersCategory = MutableLiveData<Set<Int>>()
     val newsList: MutableLiveData<List<Data>> = MutableLiveData()
@@ -24,14 +28,14 @@ class NewsListViewModel(context: Application) : AndroidViewModel(context) {
     }
 
     fun getListFromServer() {
-        viewModelScope.launch(handler + Dispatchers.IO) {
-            remoteRepository.getList().collect {
+        viewModelScope.launch(handler) {
+            getNewsFromServerUseCase.execute().collect {
                 if (it.code() == 200) {
-                    it.body()?.data?.let { it1 -> localRepository.insertNews(it1) }
-                    newsList.value = localRepository.getAllNews()
+                    it.body()?.data?.let { it1 -> insertNewsIntoDataBaseUseCase.execute(it1) }
+                    newsList.value = getNewsFromDataBaseUseCase.execute()
                 } else {
                     Log.e("Maksim", "Код ответа не равен 200")
-                    newsList.value = localRepository.getAllNews()
+                    newsList.value = getNewsFromDataBaseUseCase.execute()
                 }
             }
         }
@@ -39,7 +43,7 @@ class NewsListViewModel(context: Application) : AndroidViewModel(context) {
 
     fun getListFromDataBase() {
         viewModelScope.launch(handler) {
-            newsList.value = localRepository.getAllNews()
+            newsList.value = getNewsFromDataBaseUseCase.execute()
         }
     }
 }
