@@ -14,9 +14,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.domain.domain.model.NewsItem
 import com.example.javacoretraining.R
 import com.example.javacoretraining.databinding.FragmentDetailNewsBinding
-import com.example.javacoretraining.data.model.NewsItem
 
 class DetailNewsFragment : Fragment() {
     private lateinit var binding: FragmentDetailNewsBinding

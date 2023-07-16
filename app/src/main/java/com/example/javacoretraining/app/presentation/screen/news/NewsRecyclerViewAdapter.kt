@@ -10,19 +10,28 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.core.utils.NewsCounter
+import com.example.domain.domain.model.listModel.DomainData
 import com.example.javacoretraining.R
-import com.example.javacoretraining.app.presentation.screen.container.NewsCounter
-import com.example.javacoretraining.data.model.listModel.Data
 import com.example.javacoretraining.databinding.NewsRecyclerViewItemLayoutBinding
 
 class NewsRecyclerViewAdapter() :
-    ListAdapter<Data, NewsRecyclerViewAdapter.NewsViewHolder>(DiffCallback()) {
+    ListAdapter<DomainData, NewsRecyclerViewAdapter.NewsViewHolder>(
+        DiffCallback(),
+    ) {
 
-    private class DiffCallback : DiffUtil.ItemCallback<Data>() {
-        override fun areItemsTheSame(oldItem: Data, newItem: Data) =
+    private class DiffCallback :
+        DiffUtil.ItemCallback<DomainData>() {
+        override fun areItemsTheSame(
+            oldItem: DomainData,
+            newItem: DomainData,
+        ) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data) =
+        override fun areContentsTheSame(
+            oldItem: DomainData,
+            newItem: DomainData,
+        ) =
             oldItem == newItem
     }
 

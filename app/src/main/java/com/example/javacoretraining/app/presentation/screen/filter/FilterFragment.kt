@@ -1,5 +1,6 @@
 package com.example.javacoretraining.app.presentation.screen.filter
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,21 +8,40 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.datamodule.data.localDataSource.repository.LocalRepositoryImpl
+import com.example.datamodule.data.remoteDataSource.repository.RemoteRepositoryImpl
+import com.example.domain.domain.useCase.GetNewsFromDataBaseUseCase
+import com.example.domain.domain.useCase.GetNewsFromServerUseCase
+import com.example.domain.domain.useCase.InsertNewsIntoDataBaseUseCase
 import com.example.javacoretraining.R
-import com.example.javacoretraining.app.App
 import com.example.javacoretraining.app.presentation.screen.news.NewsListViewModel
 import com.example.javacoretraining.app.presentation.screen.news.NewsViewModelFactory
 import com.example.javacoretraining.databinding.FragmentFilterBinding
-import javax.inject.Inject
 
 class FilterFragment : Fragment() {
     private lateinit var binding: FragmentFilterBinding
     private lateinit var newsListViewModel: NewsListViewModel
+    private val newsViewModelFactory: NewsViewModelFactory by lazy {
+        NewsViewModelFactory(
+            requireContext(),
+            GetNewsFromServerUseCase(RemoteRepositoryImpl()),
+            GetNewsFromDataBaseUseCase(
+                LocalRepositoryImpl(
+                    requireContext().applicationContext as Application,
+                ),
+            ),
+            InsertNewsIntoDataBaseUseCase(
+                LocalRepositoryImpl(
+                    requireContext().applicationContext as Application,
+                ),
+            ),
+        )
+    }
 
-    @Inject lateinit var newsViewModelFactory: NewsViewModelFactory
+    //    @Inject lateinit var newsViewModelFactory: NewsViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity().applicationContext as App).appComponent.inject(this@FilterFragment)
+//        (requireActivity().applicationContext as App).appComponent.inject(this@FilterFragment)
 
         newsListViewModel = ViewModelProvider(this, newsViewModelFactory)
             .get(NewsListViewModel::class.java)

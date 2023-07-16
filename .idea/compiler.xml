@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
+    <bytecodeTargetLevel target="17">
       <module name="JavaCoreTraining.data" target="17" />
       <module name="JavaCoreTraining.features.auth" target="17" />
       <module name="JavaCoreTraining.features.filter" target="17" />
       <module name="JavaCoreTraining.features.news" target="17" />
       <module name="JavaCoreTraining.features.search" target="17" />
+      <module name="JavaCoreTraining.Module4" target="17" />
+      <module name="JavaCoreTraining.Module4.main" target="17" />
+      <module name="JavaCoreTraining.Module4.test" target="17" />
+      <module name="JavaCoreTraining.module5" target="17" />
+      <module name="JavaCoreTraining.module5.main" target="17" />
+      <module name="JavaCoreTraining.module5.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

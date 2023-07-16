@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.javacoretraining.data.model.listModel.Data
-import com.example.javacoretraining.domain.useCase.GetNewsFromDataBaseUseCase
+import com.example.domain.domain.model.listModel.DomainData
+import com.example.domain.domain.useCase.GetNewsFromDataBaseUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
@@ -16,7 +16,7 @@ class SearchViewModel(
 ) : AndroidViewModel(context) {
 
     val searchString = MutableLiveData<String>()
-    val newsList: MutableLiveData<List<Data>> = MutableLiveData()
+    val newsList: MutableLiveData<List<DomainData>> = MutableLiveData()
 
     private val handler = CoroutineExceptionHandler { _, throwable ->
         Log.e("Maksim", "Поймано исключение: ${throwable.message}")

@@ -1,6 +1,7 @@
 package com.example.javacoretraining.app.presentation.screen.news
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,17 +11,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.datamodule.data.localDataSource.repository.LocalRepositoryImpl
 import com.example.javacoretraining.R
-import com.example.javacoretraining.app.App
-import com.example.javacoretraining.app.presentation.screen.container.NewsCounter
-import com.example.javacoretraining.app.presentation.screen.container.NewsCounter.onFilterChanged
-import com.example.javacoretraining.app.presentation.utils.ErrorDialog
-import com.example.javacoretraining.data.model.listModel.Data
+import com.example.core.utils.NewsCounter
+import com.example.core.utils.NewsCounter.onFilterChanged
+import com.example.datamodule.data.remoteDataSource.repository.RemoteRepositoryImpl
+import com.example.domain.domain.useCase.GetNewsFromDataBaseUseCase
+import com.example.domain.domain.useCase.GetNewsFromServerUseCase
+import com.example.domain.domain.useCase.InsertNewsIntoDataBaseUseCase
 import com.example.javacoretraining.databinding.FragmentNewsBinding
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
@@ -28,12 +30,28 @@ class NewsFragment : Fragment() {
     private val newsRecyclerViewAdapter: NewsRecyclerViewAdapter by lazy {
         NewsRecyclerViewAdapter()
     }
+    private val newsViewModelFactory: NewsViewModelFactory by lazy {
+        NewsViewModelFactory(
+            requireContext(),
+            GetNewsFromServerUseCase(RemoteRepositoryImpl()),
+            GetNewsFromDataBaseUseCase(
+                LocalRepositoryImpl(
+                    requireContext().applicationContext as Application,
+                ),
+            ),
+            InsertNewsIntoDataBaseUseCase(
+                LocalRepositoryImpl(
+                    requireContext().applicationContext as Application,
+                ),
+            ),
+        )
+    }
 
-    @Inject lateinit var newsViewModelFactory: NewsViewModelFactory
+//    @Inject lateinit var newsViewModelFactory: NewsViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity().applicationContext as App).appComponent.inject(this@NewsFragment)
+//        (requireActivity().applicationContext as App).appComponent.inject(this@NewsFragment)
 
         viewModel = ViewModelProvider(this, newsViewModelFactory)
             .get(NewsListViewModel::class.java)
@@ -60,7 +78,10 @@ class NewsFragment : Fragment() {
         val tabLayout = this.parentFragment?.view?.findViewById<TabLayout>(R.id.tabLayout)
 
         val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            ErrorDialog(throwable.cause?.message.toString(), throwable.message.toString()).show(
+            com.example.core.utils.ErrorDialog(
+                throwable.cause?.message.toString(),
+                throwable.message.toString()
+            ).show(
                 requireActivity().supportFragmentManager,
                 "ErrorDialog",
             )
@@ -78,7 +99,7 @@ class NewsFragment : Fragment() {
         viewModel.newsList.observe(viewLifecycleOwner) { response ->
             binding.progressBar.visibility = View.GONE
 
-            newsRecyclerViewAdapter.submitList(response as List<Data>)
+            newsRecyclerViewAdapter.submitList(response)
             val newsCount = NewsCounter.getUnreadCountInt()
             if (newsCount == 0) {
                 onFilterChanged(response.size)

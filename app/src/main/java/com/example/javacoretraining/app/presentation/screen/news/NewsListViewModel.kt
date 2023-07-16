@@ -5,11 +5,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.javacoretraining.app.App
-import com.example.javacoretraining.data.model.listModel.Data
-import com.example.javacoretraining.domain.useCase.GetNewsFromDataBaseUseCase
-import com.example.javacoretraining.domain.useCase.GetNewsFromServerUseCase
-import com.example.javacoretraining.domain.useCase.InsertNewsIntoDataBaseUseCase
+import com.example.domain.domain.model.listModel.DomainData
+import com.example.domain.domain.useCase.GetNewsFromDataBaseUseCase
+import com.example.domain.domain.useCase.GetNewsFromServerUseCase
+import com.example.domain.domain.useCase.InsertNewsIntoDataBaseUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
@@ -17,11 +16,11 @@ class NewsListViewModel(
     private val context: Application,
     val getNewsFromServerUseCase: GetNewsFromServerUseCase,
     val getNewsFromDataBaseUseCase: GetNewsFromDataBaseUseCase,
-    val insertNewsIntoDataBaseUseCase: InsertNewsIntoDataBaseUseCase
+    val insertNewsIntoDataBaseUseCase: InsertNewsIntoDataBaseUseCase,
 ) : AndroidViewModel(context) {
 
     val filtersCategory = MutableLiveData<Set<Int>>()
-    val newsList: MutableLiveData<List<Data>> = MutableLiveData()
+    val newsList: MutableLiveData<List<DomainData>> = MutableLiveData()
 
     private val handler = CoroutineExceptionHandler { _, throwable ->
         Log.e("Maksim", "Поймано исключение: ${throwable.message}")

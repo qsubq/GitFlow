@@ -1,5 +1,6 @@
 package com.example.javacoretraining.app.presentation.screen.search
 
+import android.app.Application
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -15,10 +16,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.datamodule.data.localDataSource.repository.LocalRepositoryImpl
+import com.example.domain.domain.useCase.GetNewsFromDataBaseUseCase
 import com.example.javacoretraining.R
-import com.example.javacoretraining.app.App
 import com.example.javacoretraining.app.presentation.screen.news.NewsRecyclerViewAdapter
-import com.example.javacoretraining.app.presentation.utils.ErrorDialog
+import com.example.core.utils.ErrorDialog
 import com.example.javacoretraining.databinding.FragmentSearchInEventsBinding
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +30,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @FlowPreview
 class SearchInEventsFragment : Fragment() {
@@ -38,11 +39,22 @@ class SearchInEventsFragment : Fragment() {
         NewsRecyclerViewAdapter()
     }
 
-    @Inject lateinit var searchViewModelFactory: SearchViewModelFactory
+//    @Inject lateinit var searchViewModelFactory: SearchViewModelFactory
+
+    private val searchViewModelFactory: SearchViewModelFactory by lazy {
+        SearchViewModelFactory(
+            requireContext(),
+            GetNewsFromDataBaseUseCase(
+                LocalRepositoryImpl(
+                    requireContext().applicationContext as Application,
+                ),
+            ),
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity().applicationContext as App).appComponent.inject(this@SearchInEventsFragment)
+//        (requireActivity().applicationContext as App).appComponent.inject(this@SearchInEventsFragment)
 
         viewModel = ViewModelProvider(this, searchViewModelFactory)
             .get(SearchViewModel::class.java)
@@ -90,7 +102,10 @@ class SearchInEventsFragment : Fragment() {
         }
 
         val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
-            ErrorDialog(throwable.cause?.message.toString(), throwable.message.toString()).show(
+            com.example.core.utils.ErrorDialog(
+                throwable.cause?.message.toString(),
+                throwable.message.toString()
+            ).show(
                 requireActivity().supportFragmentManager,
                 "ErrorDialog",
             )

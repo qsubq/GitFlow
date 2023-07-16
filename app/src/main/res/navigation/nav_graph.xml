@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.example.javacoretraining.app.presentation.screen.auth.AuthFragment"
+        android:name="com.example.signin.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
