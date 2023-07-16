@@ -8,10 +8,12 @@ import com.example.javacoretraining.domain.useCase.GetNewsFromServerUseCase
 import com.example.javacoretraining.domain.useCase.InsertNewsIntoDataBaseUseCase
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class AppModule {
 
+    @Singleton
     @Provides
     fun provideNewsViewModelFactory(
         context: Context,
@@ -27,6 +29,7 @@ class AppModule {
         )
     }
 
+    @Singleton
     @Provides
     fun provideSearchViewModelFactory(
         context: Context,

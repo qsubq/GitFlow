@@ -17,8 +17,6 @@ fapp/src/main/java/com/example/javacoretraining/app/presentation/screen/news/New
 _app/src/main/java/com/example/javacoretraining/app/presentation/screen/container/NewsCounter.kt,3\5\35c65bd866d018f25650dcc47537dff1cebc6ebd
 {
 Kapp/src/main/java/com/example/javacoretraining/data/model/listModel/Data.kt,5\c\5cbf50a2f489d1cced0d9fd17c378bbf0be2d468
-è
-_app/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchFragment.kt,e\8\e8496920bfba11c3b400670682b14f32adb32769
 ö
 japp/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchRecyclerViewAdapter.kt,0\0\00c663f06e07563591cc843106baf3af6b6a7d73
 Ä
@@ -45,5 +43,3 @@ Xapp/src/main/java/com/example/javacoretraining/data/localDataSource/room/NewsDa
 Yapp/src/main/java/com/example/javacoretraining/domain/useCase/GetNewsFromServerUseCase.kt,8\c\8ce155927fa45a81597a56e82b28dfafb146840d
 É
 Sapp/src/main/java/com/example/javacoretraining/domain/repository/LocalRepository.kt,b\7\b7c8fb7f80266c34cd6b0e8d31ccbc613b782fb4
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164

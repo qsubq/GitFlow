@@ -17,8 +17,6 @@ eapp/src/main/java/com/example/javacoretraining/app/presentation/screen/news/Jso
 fapp/src/main/java/com/example/javacoretraining/app/presentation/screen/news/NewsRecyclerViewAdapter.kt,1\d\1dbe7110a98265fa2f009132dd2fe5e2e2e0c60b
 {
 Kapp/src/main/java/com/example/javacoretraining/data/model/listModel/Data.kt,5\c\5cbf50a2f489d1cced0d9fd17c378bbf0be2d468
-è
-_app/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchFragment.kt,e\8\e8496920bfba11c3b400670682b14f32adb32769
 ö
 japp/src/main/java/com/example/javacoretraining/app/presentation/screen/search/SearchRecyclerViewAdapter.kt,0\0\00c663f06e07563591cc843106baf3af6b6a7d73
 Ä
@@ -45,5 +43,3 @@ Xapp/src/main/java/com/example/javacoretraining/data/localDataSource/room/NewsDa
 [app/src/main/java/com/example/javacoretraining/app/presentation/screen/auth/AuthFragment.kt,9\c\9c59837e891a06e2b42945468bd9d7ef7dc0feaa
 â
 Yapp/src/main/java/com/example/javacoretraining/domain/useCase/GetNewsFromServerUseCase.kt,8\c\8ce155927fa45a81597a56e82b28dfafb146840d
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
