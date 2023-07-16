@@ -1,8 +1,6 @@
 package com.example.javacoretraining.app.presentation.screen.news
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -31,16 +29,17 @@ class NewsFragment : Fragment() {
         NewsRecyclerViewAdapter()
     }
 
-    @Inject
-    lateinit var newsViewModelFactory: NewsViewModelFactory
+    @Inject lateinit var newsViewModelFactory: NewsViewModelFactory
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as App).appComponent.inject(context as Activity)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this@NewsFragment)
 
-        viewModel = ViewModelProvider(this, newsViewModelFactory)[NewsListViewModel::class.java]
+        viewModel = ViewModelProvider(this, newsViewModelFactory)
+            .get(NewsListViewModel::class.java)
         viewModel.getListFromServer()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

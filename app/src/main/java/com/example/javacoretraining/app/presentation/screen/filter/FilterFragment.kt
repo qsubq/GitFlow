@@ -1,7 +1,5 @@
 package com.example.javacoretraining.app.presentation.screen.filter
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,16 +16,15 @@ import javax.inject.Inject
 
 class FilterFragment : Fragment() {
     private lateinit var binding: FragmentFilterBinding
-    private var viewModel: NewsListViewModel? = null
+    private lateinit var newsListViewModel: NewsListViewModel
 
-    @Inject
-    lateinit var newsViewModelFactory: NewsViewModelFactory
+    @Inject lateinit var newsViewModelFactory: NewsViewModelFactory
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this@FilterFragment)
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as App).appComponent.inject(context as Activity)
-
-        viewModel = ViewModelProvider(this, newsViewModelFactory)[NewsListViewModel::class.java]
+        newsListViewModel = ViewModelProvider(this, newsViewModelFactory)
+            .get(NewsListViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -60,7 +57,7 @@ class FilterFragment : Fragment() {
                 numbersOfActivatedSwitches.add(3)
             }
 
-            viewModel?.filtersCategory?.value = numbersOfActivatedSwitches
+            newsListViewModel.filtersCategory.value = numbersOfActivatedSwitches
             this.findNavController().navigate(R.id.action_filterFragment_to_containerFragment)
         }
     }

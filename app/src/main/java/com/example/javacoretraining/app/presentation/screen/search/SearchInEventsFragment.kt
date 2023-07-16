@@ -1,7 +1,5 @@
 package com.example.javacoretraining.app.presentation.screen.search
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -40,14 +38,14 @@ class SearchInEventsFragment : Fragment() {
         NewsRecyclerViewAdapter()
     }
 
-    @Inject
-    lateinit var searchViewModelFactory: SearchViewModelFactory
+    @Inject lateinit var searchViewModelFactory: SearchViewModelFactory
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().applicationContext as App).appComponent.inject(context as Activity)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.inject(this@SearchInEventsFragment)
 
-        viewModel = ViewModelProvider(this, searchViewModelFactory)[SearchViewModel::class.java]
+        viewModel = ViewModelProvider(this, searchViewModelFactory)
+            .get(SearchViewModel::class.java)
     }
 
     override fun onCreateView(
