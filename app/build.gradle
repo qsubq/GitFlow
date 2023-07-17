@@ -43,6 +43,11 @@ dependencies {
     implementation project(path: ':dataModule')
     implementation project(path: ':core')
     implementation project(path: ':feature:signIn')
+    implementation project(path: ':feature:search')
+    implementation project(path: ':feature:news')
+    implementation project(path: ':feature:detail')
+    implementation project(path: ':feature:help')
+    implementation project(path: ':feature:filter')
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

@@ -14,6 +14,5 @@ fun Fragment.navigate(actionId: Int, hostId: Int? = null, data: Serializable? = 
     }
 
     val bundle = Bundle().apply { putSerializable("navigation data", data) }
-
     navController.navigate(actionId, bundle)
 }

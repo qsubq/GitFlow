@@ -34,10 +34,10 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':domain')
 
     //Dagger
     implementation 'com.google.dagger:dagger:2.42'
-    implementation project(path: ':domain')
     kapt 'com.google.dagger:dagger-compiler:2.42'
     implementation 'javax.inject:javax.inject:1'
 

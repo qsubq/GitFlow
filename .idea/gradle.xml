@@ -15,6 +15,10 @@
             <option value="$PROJECT_DIR$/dataModule" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/detail" />
+            <option value="$PROJECT_DIR$/feature/filter" />
+            <option value="$PROJECT_DIR$/feature/help" />
+            <option value="$PROJECT_DIR$/feature/news" />
             <option value="$PROJECT_DIR$/feature/search" />
             <option value="$PROJECT_DIR$/feature/signIn" />
           </set>
