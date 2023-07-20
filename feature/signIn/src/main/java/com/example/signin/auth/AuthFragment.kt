@@ -70,28 +70,11 @@ class AuthFragment : Fragment() {
             Column {
                 Toolbar()
                 MainScreen()
+                EditTexts()
+                SpannableText()
             }
         }
     }
-
-    //    private fun eTObservable() {
-//        val loginObservable: Observable<String> = binding.ETEmail.textChanges()
-//            .map { it.toString() }
-//            .debounce(500, TimeUnit.MILLISECONDS)
-//
-//        val observable = Observable.combineLatest(
-//            loginObservable,
-//            passwordObservable,
-//            BiFunction<String, String, Boolean> { login, password ->
-//                login.length >= 6 && password.length >= 6
-//            },
-//        )
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe { canLogin ->
-//                binding.btnSignIn.isEnabled = canLogin
-//            }
-//    }
 
     private fun showToast(text: String) {
         Toast.makeText(
@@ -129,13 +112,6 @@ class AuthFragment : Fragment() {
     @Preview
     @Composable
     fun MainScreen() {
-        val inputEmail = remember { mutableStateOf("") }
-        val inputPassword = remember { mutableStateOf("") }
-        val btnState = remember { mutableStateOf(false) }
-
-        val emailObservable: Observable<String> = Observable.just(inputEmail.value)
-        val passwordObservable: Observable<String> = Observable.just(inputPassword.value)
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -173,7 +149,23 @@ class AuthFragment : Fragment() {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 40.dp),
             )
+        }
 
+        SideEffect {
+            Log.e("Maksim", "The side effect")
+        }
+    }
+
+    @Composable
+    fun EditTexts() {
+        val inputEmail = remember { mutableStateOf("") }
+        val inputPassword = remember { mutableStateOf("") }
+        val btnState = remember { mutableStateOf(false) }
+
+        val emailObservable: Observable<String> = Observable.just(inputEmail.value)
+        val passwordObservable: Observable<String> = Observable.just(inputPassword.value)
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = "E-mail",
                 fontSize = 12.sp,
@@ -189,8 +181,8 @@ class AuthFragment : Fragment() {
                 onValueChange = { it ->
                     inputEmail.value = it
                     emailObservable
-                        .map { it }
                         .debounce(500, TimeUnit.MILLISECONDS)
+                        .map { it }
                 },
                 modifier = Modifier
                     .padding(top = 8.dp, start = 20.dp, end = 20.dp)
@@ -231,8 +223,8 @@ class AuthFragment : Fragment() {
                 onValueChange = {
                     inputPassword.value = it
                     passwordObservable
-                        .map { it }
                         .debounce(500, TimeUnit.MILLISECONDS)
+                        .map { it }
                 },
                 modifier = Modifier
                     .padding(top = 8.dp, start = 20.dp, end = 20.dp)
@@ -268,54 +260,13 @@ class AuthFragment : Fragment() {
                     .height(44.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xff66a636)),
                 shape = RoundedCornerShape(2.dp),
-                enabled = btnState.value
+                enabled = btnState.value,
             ) {
                 Text(text = "ВОЙТИ", fontSize = 16.sp)
             }
-            val annotatedForgetPassword = buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(
-                        color = Color(0xff66a636),
-                        fontSize = 14.sp,
-                        textDecoration = TextDecoration.Underline,
-                    ),
-                ) {
-                    append("Забыли пароль?")
-                }
-            }
-            val annotatedRegistration = buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(
-                        color = Color(0xff66a636),
-                        fontSize = 14.sp,
-                        textDecoration = TextDecoration.Underline,
-                    ),
-                ) {
-                    append("Регистрация")
-                }
-            }
-
-            Box(
-                modifier = Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp).fillMaxWidth(),
-            ) {
-                ClickableText(
-                    modifier = Modifier.align(Alignment.CenterStart),
-                    text = annotatedForgetPassword,
-                    onClick = {
-                        showToast("Забыли пароль")
-                    },
-                )
-
-                ClickableText(
-                    modifier = Modifier.align(Alignment.CenterEnd),
-                    text = annotatedRegistration,
-                    onClick = {
-                        showToast("Забыли пароль")
-                    },
-                )
-            }
         }
-        val observable = Observable.combineLatest(
+
+        Observable.combineLatest(
             emailObservable,
             passwordObservable,
             BiFunction<String, String, Boolean> { login, password ->
@@ -326,8 +277,51 @@ class AuthFragment : Fragment() {
             .subscribe { canLogin ->
                 btnState.value = canLogin
             }
-        SideEffect {
-            Log.e("Maksim", "The side effect")
+    }
+
+    @Composable
+    fun SpannableText() {
+        val annotatedForgetPassword = buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
+                    color = Color(0xff66a636),
+                    fontSize = 14.sp,
+                    textDecoration = TextDecoration.Underline,
+                ),
+            ) {
+                append("Забыли пароль?")
+            }
+        }
+        val annotatedRegistration = buildAnnotatedString {
+            withStyle(
+                style = SpanStyle(
+                    color = Color(0xff66a636),
+                    fontSize = 14.sp,
+                    textDecoration = TextDecoration.Underline,
+                ),
+            ) {
+                append("Регистрация")
+            }
+        }
+
+        Box(
+            modifier = Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp).fillMaxWidth(),
+        ) {
+            ClickableText(
+                modifier = Modifier.align(Alignment.CenterStart),
+                text = annotatedForgetPassword,
+                onClick = {
+                    showToast("Забыли пароль")
+                },
+            )
+
+            ClickableText(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                text = annotatedRegistration,
+                onClick = {
+                    showToast("Регистрация")
+                },
+            )
         }
     }
 }
