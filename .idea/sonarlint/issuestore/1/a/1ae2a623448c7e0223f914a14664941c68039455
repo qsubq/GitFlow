@@ -1,0 +1,7 @@
+
+gkotlin:S1172R"CUse "_" instead of this unused lambda parameter "coroutineContext".(ÿ´Êûÿÿÿÿ8…Ï¥™–1
+=kotlin:S1258"Remove this commented out code.(˜ç¢Û8ˆÏ¥™–1
+Bkotlin:S125P"Remove this commented out code.(éôÖ¡ùÿÿÿÿ8±´§™–1
+Bkotlin:S125]"Remove this commented out code.(šÿé‹ùÿÿÿÿ8˜ã§™–1
+9kotlin:S1128"Remove this unused import.(ë¨²™8¹´§™–1
+Kkotlin:S6518;",Replace function call with indexed accessor.(˜Àôä8•Ï¥™–1
