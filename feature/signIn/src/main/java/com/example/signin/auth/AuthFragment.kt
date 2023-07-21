@@ -37,6 +37,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
@@ -231,6 +232,7 @@ class AuthFragment : Fragment() {
                     .fillMaxWidth()
                     .height(48.dp),
                 singleLine = true,
+                visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 decorationBox = { innerTextField ->
                     Column(modifier = Modifier.fillMaxWidth()) {

@@ -31,12 +31,6 @@ Wdomain/src/main/java/com/example/domain/domain/useCase/InsertNewsIntoDataBaseUs
 Rdomain/src/main/java/com/example/domain/domain/useCase/GetNewsFromServerUseCase.kt,a\2\a2bd87cb25d34acde5cfeb36ea4c944f0b548e62
 –
 fDataModule/src/main/java/com/example/datamodule/data/localDataSource/repository/LocalRepositoryImpl.kt,7\5\7508e30b58d40aa7be20c2d37617573db612ebce
-u
-Eapp/src/main/java/com/example/javacoretraining/app/di/AppComponent.kt,8\0\8004f4a64e278ce200eeffde3212525f231b7224
-r
-Bapp/src/main/java/com/example/javacoretraining/app/di/AppModule.kt,8\3\83e21c2c903ddcedf132ba4925ddd2d0e98b56d4
-u
-Eapp/src/main/java/com/example/javacoretraining/app/di/DomainModule.kt,a\f\afeb8576a14074b49c7fc08b6fcf7aae4eb45aeb
 i
 9app/src/main/java/com/example/javacoretraining/app/App.kt,6\6\6688be2900734922c7ac2eb3772cd47c64076501
 u
@@ -77,12 +71,8 @@ Pfeature/search/src/main/java/com/example/search/search/SearchViewModelFactory.k
 Pfeature/search/src/main/java/com/example/search/search/SearchInEventsFragment.kt,1\d\1d3400f2197e69b06f388d95972c60887a13fb96
 ›
 kapp/src/main/java/com/example/javacoretraining/app/presentation/screen/container/BottomNavigationAdapter.kt,c\6\c6a65ea8cc5d063bdfd233623f0b9b91c986c3e7
-•
-eapp/src/main/java/com/example/javacoretraining/app/presentation/screen/container/ContainerFragment.kt,b\e\be1af1d99e074636d09e90b3a5c49836433b55b1
 I
 feature/help/build.gradle,8\e\8e9d159da823238885625d8e1ec1ec9becdf3e7f
-‘
-aapp/src/main/java/com/example/javacoretraining/app/presentation/screen/history/HistoryFragment.kt,4\f\4f655a0e0751f5fb0af9791b643ac2871865e9a0
 ‘
 aapp/src/main/java/com/example/javacoretraining/app/presentation/screen/profile/ProfileFragment.kt,1\9\197c2c9ebff7a23ea5f438e159c38eaa047d9e17
 C
