@@ -61,8 +61,6 @@ y
 Ifeature/search/src/main/java/com/example/search/search/SearchViewModel.kt,2\2\22a7568a6c01bacb11f1228bac5ee92f6109954f
 v
 Fcore/src/main/java/com/example/core/adapter/NewsRecyclerViewAdapter.kt,6\4\64df893e43cf20ffe8a8c717756e79ca72ad33df
-r
-Bcore/src/main/java/com/example/core/viewModel/NewsListViewModel.kt,6\7\67c0d83c4692776159c79c6534b6fbf6d45186d7
 |
 Lfeature/detail/src/main/java/com/example/detail/detail/DetailNewsFragment.kt,7\9\792908618303156630b47dadc513d5ab2bd7362d
 K
@@ -87,10 +85,6 @@ I
 aapp/src/main/java/com/example/javacoretraining/app/presentation/screen/history/HistoryFragment.kt,4\f\4f655a0e0751f5fb0af9791b643ac2871865e9a0
 ‘
 aapp/src/main/java/com/example/javacoretraining/app/presentation/screen/profile/ProfileFragment.kt,1\9\197c2c9ebff7a23ea5f438e159c38eaa047d9e17
-I
-feature/news/build.gradle,6\b\6bb3f5e5925363d3f37f92d7a00c3c02e1dd66f3
-p
-@feature/news/src/main/java/com/example/news/news/NewsFragment.kt,1\a\1ae2a623448c7e0223f914a14664941c68039455
 C
 domain/build.gradle,a\3\a3021bb5ba623a461b5fdb89ae51923a4945c354
 G
@@ -103,3 +97,7 @@ x
 Hfeature/filter/src/main/java/com/example/filter/filter/FilterFragment.kt,b\1\b1638fb3b8a516e7f6043ff3d433b4995ce4c0a4
 K
 feature/filter/build.gradle,0\5\05057781a685e0db23d20efa0b6e61f9ff5b357d
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+±
+€features/auth/build/generated/data_binding_base_class_source_out/debug/out/com/example/auth/databinding/FragmentAuthBinding.java,1\8\18cf5e259f7bcc2dfb4fa5c105fd8c58b7f60e3c

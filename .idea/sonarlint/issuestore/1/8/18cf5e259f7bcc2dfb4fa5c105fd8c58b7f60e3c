@@ -1,0 +1,18 @@
+
+k	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´›Îµúÿÿÿÿ
+k	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´›Îµúÿÿÿÿ
+k	java:S117u"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÑ±úÿÿÿÿ
+k	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Ì±äşÿÿÿÿ
+g
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ƒ÷‘Ï
+g
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ú®Ú±
+l
+java:S1128"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ôİÕıÿÿÿÿ
+g	java:S116"RRename this field "ETEmail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ›ÖĞ
+j	java:S116"URename this field "ETPassword" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°Î¶†
+\	java:S107A"BConstructor has 14 parameters, which is greater than 7 authorized.(‡ƒúÖşÿÿÿÿ
+m
+java:S3776o"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(³Ş«çûÿÿÿÿ
+V
+java:S1119s";Refactor the code to remove this label and the need for it.(´Ó¸úùÿÿÿÿ
