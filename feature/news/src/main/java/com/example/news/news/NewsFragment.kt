@@ -126,7 +126,7 @@ class NewsFragment : Fragment() {
                                     .height(400.dp)
                                     .fillMaxWidth()
                                     .clickable {
-                                        navigate(com.example.core.R.id.action_containerFragment_to_detailNewsFragment)
+                                        navigate(com.example.core.R.id.action_containerFragment_to_detailNewsFragment, data = item)
                                     },
                             ) {
                                 AsyncImage(

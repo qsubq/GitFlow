@@ -43,8 +43,6 @@ Hfeature/search/src/main/java/com/example/search/search/SearchFragment.kt,d\e\d
 Mfeature/search/src/main/java/com/example/search/search/SearchInNKOFragment.kt,0\d\0d6d691e5bb62881a85259addb06b111e7e09653
 ƒ
 Sfeature/search/src/main/java/com/example/search/search/SearchRecyclerViewAdapter.kt,4\d\4d9c25991649311603b22e2d296c0a295352db7a
-h
-8core/src/main/java/com/example/core/utils/Extenstions.kt,9\2\925f03f11fcfb526274f14b2386d8cf86d67f62f
 y
 Ifeature/search/src/main/java/com/example/search/search/SearchViewModel.kt,2\2\22a7568a6c01bacb11f1228bac5ee92f6109954f
 p
@@ -81,3 +79,11 @@ A
 core/build.gradle,9\1\918ca359602392354123b7d3b63264baf7ea9dde
 t
 Dfeature/signIn/src/main/java/com/example/signin/auth/AuthFragment.kt,1\d\1d149d67f210dc77a369179d38a4b9aa73770b70
+•
+eapp/src/main/java/com/example/javacoretraining/app/presentation/screen/container/ContainerFragment.kt,b\e\be1af1d99e074636d09e90b3a5c49836433b55b1
+›
+kapp/src/main/java/com/example/javacoretraining/app/presentation/screen/container/BottomNavigationAdapter.kt,c\6\c6a65ea8cc5d063bdfd233623f0b9b91c986c3e7
+‘
+aapp/src/main/java/com/example/javacoretraining/app/presentation/screen/profile/ProfileFragment.kt,1\9\197c2c9ebff7a23ea5f438e159c38eaa047d9e17
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164

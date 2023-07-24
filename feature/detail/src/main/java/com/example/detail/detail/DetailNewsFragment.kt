@@ -3,9 +3,12 @@ package com.example.detail.detail
 import android.Manifest
 import android.app.Dialog
 import android.app.Notification
+import android.app.Notification.EXTRA_NOTIFICATION_ID
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -30,6 +33,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
@@ -40,10 +44,11 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.core.MyCoreBroadcastReceiver
 import com.example.core.utils.navigate
 import com.example.detail.R
 import com.example.detail.databinding.FragmentDetailNewsBinding
-import com.example.domain.domain.model.NewsItem
+import com.example.domain.domain.model.listModel.DomainData
 import com.google.android.material.textview.MaterialTextView
 
 private const val CHANNEL_ID = "14"
@@ -54,7 +59,7 @@ private const val RECORD_REQUEST_CODE = 100
 class DetailNewsFragment : Fragment() {
     private lateinit var binding: FragmentDetailNewsBinding
     private val newsItem by lazy {
-        arguments?.getParcelable("ParcelableNews", NewsItem::class.java)
+        arguments?.getParcelable("ParcelableNews", DomainData::class.java)
     }
 
     override fun onCreateView(
@@ -72,30 +77,28 @@ class DetailNewsFragment : Fragment() {
 
         requestNotificationPermission()
 
-        if (newsItem != null) {
-            Glide.with(requireContext())
-                .load(newsItem!!.imgId)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(binding.imgNews1)
+        Glide.with(requireContext())
+            .load(newsItem?.avatar)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .into(binding.imgNews1)
 
-            with(binding) {
-                imgBack.setOnClickListener {
-                    navigate(R.id.action_detailNewsFragment_to_containerFragment)
-                }
-                linearLayoutMoneyHelp.setOnClickListener {
-                    showDialog()
-                }
-                tvToolbarTitle.text = newsItem!!.title
-                tvTitle.text = newsItem!!.title
-                tvDate.text = newsItem!!.date
-                tvDesc.text = newsItem!!.description
-                tvFond.text = newsItem!!.fond
-                tvPhones.text = newsItem!!.numbers
-                tvAddress.text = newsItem!!.place
-                imgNews1.setImageResource(R.drawable.cardimage_1)
-                imgNews2.setImageResource(R.drawable.cardimage_2)
-                imgNews3.setImageResource(R.drawable.cardimage_3)
+        with(binding) {
+            imgBack.setOnClickListener {
+                navigate(R.id.action_detailNewsFragment_to_containerFragment)
+            }
+            linearLayoutMoneyHelp.setOnClickListener {
+                showDialog()
+            }
+            tvToolbarTitle.text = newsItem?.email
+            tvTitle.text = newsItem?.first_name
+            tvDate.text = newsItem?.last_name
+            tvDesc.text = newsItem?.first_name
+
+            with(imgNews1) {
+                setImageResource(R.drawable.cardimage_1)
+                setImageResource(R.drawable.cardimage_2)
+                setImageResource(R.drawable.cardimage_3)
             }
         }
 
@@ -168,8 +171,8 @@ class DetailNewsFragment : Fragment() {
                 .build()
 
             val newsData = Data.Builder()
-                .putInt("id", 1)
-                .putString("title", "Title")
+                .putInt("id", newsItem!!.id)
+                .putString("title", newsItem!!.email)
                 .putInt("sum", editText.text.toString().toInt())
                 .build()
 
@@ -203,7 +206,7 @@ class DetailNewsFragment : Fragment() {
         dialog.show()
     }
 
-    fun requestNotificationPermission() {
+    private fun requestNotificationPermission() {
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(Manifest.permission.POST_NOTIFICATIONS),
@@ -239,16 +242,17 @@ class DetailNewsFragment : Fragment() {
         }
 
         private fun createNotification(): Notification {
-//            val intent = Intent().apply {
-//                data = Uri.parse("mysheme://detail")
-//            }
-//            val pendingIntent: PendingIntent =
-//                PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            val pendingIntent = NavDeepLinkBuilder(context)
+                .setGraph(com.example.core.R.navigation.nav_graph)
+                .setDestination(com.example.core.R.id.detailNewsFragment)
+                .createPendingIntent()
 
-//            val pendingIntent = NavDeepLinkBuilder(context)
-//                .setGraph(com.example.javacoretraining.R.navigation.nav_graph)
-//                .setDestination(com.example.javacoretraining.R.id.detailNewsFragment)
-//                .createPendingIntent()
+            val snoozeIntent = Intent(context, MyCoreBroadcastReceiver::class.java).apply {
+                action = "ACTION_SNOOZE"
+                putExtra(EXTRA_NOTIFICATION_ID, 0)
+            }
+            val snoozePendingIntent: PendingIntent =
+                PendingIntent.getBroadcast(context, 0, snoozeIntent, PendingIntent.FLAG_IMMUTABLE)
 
             val title = inputData.getString("title")
             val amount = inputData.getInt("sum", 0)
@@ -258,8 +262,13 @@ class DetailNewsFragment : Fragment() {
                 .setContentTitle(title)
                 .setContentText("Спасибо, что пожертвовали $amount ₽! Будем очень признательны, если вы сможете пожертвовать еще больше.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//                .setContentIntent(pendingIntent)
+                .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
+                .addAction(
+                    R.drawable.share_icon,
+                    "Remind me later",
+                    snoozePendingIntent,
+                )
                 .build()
         }
     }
