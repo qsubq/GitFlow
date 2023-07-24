@@ -3,8 +3,6 @@
 Lapp/src/main/java/com/example/javacoretraining/training/dialog/DialogItem.kt,f\6\f665f1872b62e317fd94f4086cea1d0eed577c62
 â
 Yapp/src/main/java/com/example/javacoretraining/training/collections/CollectionsBlock.java,2\1\210e10a935178b50dcf75c76ffd460fb49894ab3
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 ò
 hDataModule/src/main/java/com/example/datamodule/data/remoteDataSource/repository/RemoteRepositoryImpl.kt,1\6\16c502d5757e6ff6f218f2c9a8d5a397e0d86812
 Å
@@ -37,8 +35,6 @@ u
 EdataModule/src/main/java/com/example/datamodule/data/di/DataModule.kt,e\f\ef973d614fbcca17e0fb0296c818381f8f494574
 h
 8core/src/main/java/com/example/core/utils/NewsCounter.kt,7\8\784180176f254bebeea86dc9424f5b441191e322
-|
-Ldomain/src/main/java/com/example/domain/domain/model/listModel/DomainData.kt,0\b\0b11a659a5e1a495b4584362c85fef917688f750
 â
 YdataModule/src/main/java/com/example/datamodule/data/localDataSource/room/NewsDataBase.kt,d\a\da09c0f13f91693888335e6b7cb2642bdedc674e
 x
@@ -49,16 +45,8 @@ Mfeature/search/src/main/java/com/example/search/search/SearchInNKOFragment.kt,
 Sfeature/search/src/main/java/com/example/search/search/SearchRecyclerViewAdapter.kt,4\d\4d9c25991649311603b22e2d296c0a295352db7a
 h
 8core/src/main/java/com/example/core/utils/Extenstions.kt,9\2\925f03f11fcfb526274f14b2386d8cf86d67f62f
-K
-feature/search/build.gradle,0\6\069430a56e80315e18bd26dee842d773adf10d4c
 y
 Ifeature/search/src/main/java/com/example/search/search/SearchViewModel.kt,2\2\22a7568a6c01bacb11f1228bac5ee92f6109954f
-|
-Lfeature/detail/src/main/java/com/example/detail/detail/DetailNewsFragment.kt,7\9\792908618303156630b47dadc513d5ab2bd7362d
-K
-feature/detail/build.gradle,8\1\812e5431a1db015fbfef873ac6487a63b80f5ad4
-v
-Fcore/src/main/java/com/example/core/adapter/NewsRecyclerViewAdapter.kt,6\4\64df893e43cf20ffe8a8c717756e79ca72ad33df
 p
 @feature/help/src/main/java/com/example/help/help/HelpFragment.kt,3\7\37e88eca0e61d7d38f075e6504f5a20febec1663
 
@@ -69,20 +57,12 @@ Hfeature/help/src/main/java/com/example/help/help/HelpRecyclerViewItem.kt,f\c\f
 Pfeature/search/src/main/java/com/example/search/search/SearchInEventsFragment.kt,1\d\1d3400f2197e69b06f388d95972c60887a13fb96
 Ä
 Pfeature/search/src/main/java/com/example/search/search/SearchViewModelFactory.kt,2\d\2d6808e5686caa430a6f43e078381a0e7b9cabf7
-õ
-kapp/src/main/java/com/example/javacoretraining/app/presentation/screen/container/BottomNavigationAdapter.kt,c\6\c6a65ea8cc5d063bdfd233623f0b9b91c986c3e7
 I
 feature/help/build.gradle,8\e\8e9d159da823238885625d8e1ec1ec9becdf3e7f
-ë
-aapp/src/main/java/com/example/javacoretraining/app/presentation/screen/profile/ProfileFragment.kt,1\9\197c2c9ebff7a23ea5f438e159c38eaa047d9e17
 C
 domain/build.gradle,a\3\a3021bb5ba623a461b5fdb89ae51923a4945c354
 G
 dataModule/build.gradle,6\a\6a587a694077ab34daedb2be77831f457a17973a
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-A
-core/build.gradle,9\1\918ca359602392354123b7d3b63264baf7ea9dde
 x
 Hfeature/filter/src/main/java/com/example/filter/filter/FilterFragment.kt,b\1\b1638fb3b8a516e7f6043ff3d433b4995ce4c0a4
 K
@@ -91,3 +71,13 @@ K
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ±
 Äfeatures/auth/build/generated/data_binding_base_class_source_out/debug/out/com/example/auth/databinding/FragmentAuthBinding.java,1\8\18cf5e259f7bcc2dfb4fa5c105fd8c58b7f60e3c
+v
+Fcore/src/main/java/com/example/core/adapter/NewsRecyclerViewAdapter.kt,6\4\64df893e43cf20ffe8a8c717756e79ca72ad33df
+I
+feature/news/build.gradle,6\b\6bb3f5e5925363d3f37f92d7a00c3c02e1dd66f3
+K
+feature/search/build.gradle,0\6\069430a56e80315e18bd26dee842d773adf10d4c
+A
+core/build.gradle,9\1\918ca359602392354123b7d3b63264baf7ea9dde
+t
+Dfeature/signIn/src/main/java/com/example/signin/auth/AuthFragment.kt,1\d\1d149d67f210dc77a369179d38a4b9aa73770b70

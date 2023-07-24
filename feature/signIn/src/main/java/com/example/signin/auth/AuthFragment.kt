@@ -245,7 +245,6 @@ class AuthFragment : Fragment() {
                                     fontFamily = FontFamily.Default,
                                 )
                             }
-                            //
                             innerTextField()
                         }
                         Divider(color = Color(0x1e000000), modifier = Modifier.padding(top = 8.dp))
@@ -307,7 +306,9 @@ class AuthFragment : Fragment() {
         }
 
         Box(
-            modifier = Modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+                .fillMaxWidth(),
         ) {
             ClickableText(
                 modifier = Modifier.align(Alignment.CenterStart),

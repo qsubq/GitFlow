@@ -31,6 +31,7 @@
         android:name="com.example.detail.detail.DetailNewsFragment"
         android:label="fragment_detail_news"
         tools:layout="@layout/fragment_detail_news" >
+        <deepLink app:uri="mysheme://detail"/>
         <action
             android:id="@+id/action_detailNewsFragment_to_containerFragment"
             app:destination="@id/containerFragment" />

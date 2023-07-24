@@ -12,7 +12,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main.toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="56dp"
             android:background="@color/main_green_color"
             app:layout_collapseMode="pin"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +22,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_back"
+                android:layout_marginStart="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/arrow_back"
@@ -237,6 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:gravity="center"
             android:background="@color/light_grey"
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -310,6 +312,7 @@
                     android:layout_marginHorizontal="26dp"
                     android:layout_marginTop="7dp"
                     android:layout_marginBottom="5dp"
+                    android:gravity="center"
                     android:minLines="2"
                     android:text="Помочь \nвещами"
                     android:textAlignment="center"
@@ -332,6 +335,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="22dp"
@@ -359,6 +363,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="26dp"
@@ -385,8 +390,10 @@
                     android:src="@drawable/money_icon" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvHelpWithMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="22dp"
                     android:layout_marginTop="7dp"

@@ -41,7 +41,6 @@ import com.example.core.utils.navigate
 import com.example.core.viewModel.NewsListViewModel
 import com.example.datamodule.data.localDataSource.repository.LocalRepositoryImpl
 import com.example.datamodule.data.remoteDataSource.repository.RemoteRepositoryImpl
-import com.example.domain.domain.model.listModel.DomainData
 import com.example.domain.domain.useCase.GetNewsFromDataBaseUseCase
 import com.example.domain.domain.useCase.GetNewsFromServerUseCase
 import com.example.domain.domain.useCase.InsertNewsIntoDataBaseUseCase
@@ -98,10 +97,9 @@ class NewsFragment : Fragment() {
     @Preview
     @Composable
     private fun MainScreen() {
-        val mockItems = mutableListOf<DomainData>(DomainData("", "Email", "DFir", 1, "LAastName"))
         val newsState = viewModel.newsList.observeAsState()
 
-        when (newsState.value) {
+        when (newsState.value as NewsListViewModel.NewsState) {
             is NewsListViewModel.NewsState.IsError -> {
                 ErrorDialog(
                     "Error",
@@ -189,7 +187,10 @@ class NewsFragment : Fragment() {
                                         )
                                     }
                                 }
-                                Spacer(modifier = Modifier.fillMaxWidth().height(8.dp))
+                                Spacer(
+                                    modifier = Modifier.fillMaxWidth().height(8.dp)
+                                        .background(Color(0xffe8eded)),
+                                )
                             }
                         }
                     }
@@ -197,12 +198,9 @@ class NewsFragment : Fragment() {
             }
 
             is NewsListViewModel.NewsState.IsLoading -> {
-                Box() {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
-            }
-
-            else -> {
             }
         }
     }
