@@ -34,13 +34,14 @@ android {
             jvmTarget = "17"
         }
     }
+
     buildFeatures {
         viewBinding true
     }
 }
 
 dependencies {
-    implementation project(path: ':dataModule')
+    implementation project(path: ':data_module')
     implementation project(path: ':core')
     implementation project(path: ':feature:signIn')
     implementation project(path: ':feature:search')

@@ -159,12 +159,10 @@ class AuthFragment : Fragment() {
 
     @Composable
     fun EditTexts() {
-        val inputEmail = remember { mutableStateOf("") }
-        val inputPassword = remember { mutableStateOf("") }
-        val btnState = remember { mutableStateOf(false) }
+        val authState = remember { mutableStateOf(AuthComposableState("", "", false)) }
 
-        val emailObservable: Observable<String> = Observable.just(inputEmail.value)
-        val passwordObservable: Observable<String> = Observable.just(inputPassword.value)
+        val emailObservable: Observable<String> = Observable.just(authState.value.inputEmail)
+        val passwordObservable: Observable<String> = Observable.just(authState.value.inputPassword)
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
@@ -178,9 +176,10 @@ class AuthFragment : Fragment() {
                     .align(Alignment.Start),
             )
             BasicTextField(
-                value = inputEmail.value,
+                value = authState.value.inputEmail,
                 onValueChange = { it ->
-                    inputEmail.value = it
+                    val inputEmailData = authState.value.copy(inputEmail = it)
+                    authState.value = inputEmailData
                     emailObservable
                         .debounce(500, TimeUnit.MILLISECONDS)
                         .map { it }
@@ -194,7 +193,7 @@ class AuthFragment : Fragment() {
                 decorationBox = { innerTextField ->
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Row {
-                            if (inputEmail.value.isEmpty()) {
+                            if (authState.value.inputEmail.isEmpty()) {
                                 Text(
                                     text = "Введите e-mail",
                                     color = Color(0x61000000),
@@ -202,7 +201,6 @@ class AuthFragment : Fragment() {
                                     fontFamily = FontFamily.Default,
                                 )
                             }
-                            //
                             innerTextField()
                         }
                         Divider(color = Color(0x1e000000), modifier = Modifier.padding(top = 8.dp))
@@ -220,9 +218,10 @@ class AuthFragment : Fragment() {
                     .align(Alignment.Start),
             )
             BasicTextField(
-                value = inputPassword.value,
+                value = authState.value.inputPassword,
                 onValueChange = {
-                    inputPassword.value = it
+                    val inputPasswordData = authState.value.copy(inputPassword = it)
+                    authState.value = inputPasswordData
                     passwordObservable
                         .debounce(500, TimeUnit.MILLISECONDS)
                         .map { it }
@@ -237,7 +236,7 @@ class AuthFragment : Fragment() {
                 decorationBox = { innerTextField ->
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Row {
-                            if (inputPassword.value.isEmpty()) {
+                            if (authState.value.inputPassword.isEmpty()) {
                                 Text(
                                     text = "Введите пароль",
                                     color = Color(0x61000000),
@@ -261,7 +260,7 @@ class AuthFragment : Fragment() {
                     .height(44.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xff66a636)),
                 shape = RoundedCornerShape(2.dp),
-                enabled = btnState.value,
+                enabled = authState.value.btnState,
             ) {
                 Text(text = "ВОЙТИ", fontSize = 16.sp)
             }
@@ -276,7 +275,8 @@ class AuthFragment : Fragment() {
         ).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { canLogin ->
-                btnState.value = canLogin
+                val btnData = authState.value.copy(btnState = canLogin)
+                authState.value = btnData
             }
     }
 

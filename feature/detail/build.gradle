@@ -36,7 +36,7 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation project(path: ':domain')
-    implementation project(path: ':dataModule')
+    implementation project(path: ':data_module')
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'

@@ -177,7 +177,7 @@ class DetailNewsFragment : Fragment() {
                 .build()
 
             val notificationWorkRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
-//                .setConstraints(constraints)
+                .setConstraints(constraints)
                 .setInputData(newsData)
                 .build()
 
@@ -199,8 +199,54 @@ class DetailNewsFragment : Fragment() {
 
         frame100.setOnClickListener {
             amountOfDonation = 100
-            frame100.background.setTint(resources.getColor(R.color.main_green_color))
+            frame100.setBackgroundColor(resources.getColor(R.color.main_green_color))
             tv100.setTextColor(resources.getColor(R.color.white))
+
+            frame500.setBackgroundColor(resources.getColor(R.color.white))
+            tv500.setTextColor(resources.getColor(R.color.main_green_color))
+            frame1000.setBackgroundColor(resources.getColor(R.color.white))
+            tv1000.setTextColor(resources.getColor(R.color.main_green_color))
+            frame2000.setBackgroundColor(resources.getColor(R.color.white))
+            tv2000.setTextColor(resources.getColor(R.color.main_green_color))
+        }
+
+        frame500.setOnClickListener {
+            amountOfDonation = 500
+            frame500.setBackgroundColor(resources.getColor(R.color.main_green_color))
+            tv500.setTextColor(resources.getColor(R.color.white))
+
+            frame100.setBackgroundColor(resources.getColor(R.color.white))
+            tv100.setTextColor(resources.getColor(R.color.main_green_color))
+            frame1000.setBackgroundColor(resources.getColor(R.color.white))
+            tv1000.setTextColor(resources.getColor(R.color.main_green_color))
+            frame2000.setBackgroundColor(resources.getColor(R.color.white))
+            tv2000.setTextColor(resources.getColor(R.color.main_green_color))
+        }
+
+        frame1000.setOnClickListener {
+            amountOfDonation = 1000
+            frame1000.setBackgroundColor(resources.getColor(R.color.main_green_color))
+            tv1000.setTextColor(resources.getColor(R.color.white))
+
+            frame100.setBackgroundColor(resources.getColor(R.color.white))
+            tv100.setTextColor(resources.getColor(R.color.main_green_color))
+            frame500.setBackgroundColor(resources.getColor(R.color.white))
+            tv500.setTextColor(resources.getColor(R.color.main_green_color))
+            frame2000.setBackgroundColor(resources.getColor(R.color.white))
+            tv2000.setTextColor(resources.getColor(R.color.main_green_color))
+        }
+
+        frame2000.setOnClickListener {
+            amountOfDonation = 2000
+            frame2000.setBackgroundColor(resources.getColor(R.color.main_green_color))
+            tv2000.setTextColor(resources.getColor(R.color.white))
+
+            frame100.setBackgroundColor(resources.getColor(R.color.white))
+            tv100.setTextColor(resources.getColor(R.color.main_green_color))
+            frame500.setBackgroundColor(resources.getColor(R.color.white))
+            tv500.setTextColor(resources.getColor(R.color.main_green_color))
+            frame1000.setBackgroundColor(resources.getColor(R.color.white))
+            tv1000.setTextColor(resources.getColor(R.color.main_green_color))
         }
 
         dialog.show()

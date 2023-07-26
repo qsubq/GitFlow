@@ -36,15 +36,16 @@
         app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:enabled="false"
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSend"
-        android:layout_width="106dp"
+        android:layout_width="wrap_content"
+        android:minWidth="0dp"
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
+        android:enabled="false"
         android:gravity="center"
         android:text="перевести"
         android:textAllCaps="true"
@@ -56,15 +57,17 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCancel"
-        android:layout_width="106dp"
+        android:layout_width="wrap_content"
         android:layout_height="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/white"
         android:elevation="0dp"
         android:gravity="center"
+        android:minWidth="0dp"
+        android:shadowColor="@color/white"
         android:text="Отмена"
         android:textAllCaps="true"
         android:textColor="#66a636"
@@ -91,15 +94,16 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/appCompatEditText"
-        android:inputType="numberDecimal"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="105dp"
         android:layout_marginTop="14dp"
-        android:lines="1"
         android:layout_marginEnd="105dp"
+        android:background="@null"
         android:gravity="center"
         android:hint="Введите сумму"
+        android:inputType="numberDecimal"
+        android:lines="1"
         android:textColorHint="#61000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +137,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
+            android:padding="1.20dp"
             android:layout_height="match_parent"
             android:background="@drawable/shape_radio_group"
             android:orientation="horizontal">
@@ -162,10 +167,10 @@
                 app:dividerColor="#66a636" />
 
             <FrameLayout
-                android:background="#66a636"
                 android:id="@+id/frame500"
                 android:layout_width="68dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#66a636">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv500"

@@ -40,7 +40,7 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation project(path: ':domain')
-    implementation project(path: ':dataModule')
+    implementation project(path: ':data_module')
 
 //   Coil compose
     implementation("io.coil-kt:coil-compose:2.4.0")

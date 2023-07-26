@@ -36,7 +36,7 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation project(path: ':domain')
-    implementation project(path: ':dataModule')
+    implementation project(path: ':data_module')
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

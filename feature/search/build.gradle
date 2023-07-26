@@ -36,7 +36,7 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation project(path: ':domain')
-    implementation project(path: ':dataModule')
+    implementation project(path: ':data_module')
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 

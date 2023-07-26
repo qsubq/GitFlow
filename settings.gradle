@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "JavaCoreTraining"
 include ':app'
-include ':dataModule'
+include ':data_module'
 include ':domain'
 include ':core'
 include ':feature:search'
